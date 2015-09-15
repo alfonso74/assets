@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+	<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="rcp.assets.model">
+
+	<class name="Cargo" table="CARGOS">
+		<id name="idCargo" column="idCARGO" unsaved-value="-1">
+			<generator class="native"/>
+		</id>
+		<many-to-one name="caso"
+				column="idCASO"
+				unique="true"
+				not-null="false"/>
+		<property name="noCargo" column="NO_CARGO"/>
+		<property name="monto"/>
+		
+		<property name="fechaCreado" type="timestamp" column="FECHA"/>
+		<property name="fechaModificado" type="timestamp" column="MODIFICADO"/>
+		<property name="actualizado" column="ACTUALIZAR_YN"/>
+
+		<set name="listaDetalles" order-by="SECUENCIA" inverse="true"
+			cascade="all">
+			<key column="idCARGO" not-null="true"/>
+			<one-to-many class="rcp.assets.model.DetalleCargo"/>
+		</set>
+
+	</class>
+	
+</hibernate-mapping>

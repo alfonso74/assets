@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <list-property name="configVars">
+        <structure>
+            <property name="name">__isdisplay__connectionURL_32_0</property>
+            <property name="value">jdbc:mysql://localhost:3306/assets</property>
+        </structure>
+        <structure>
+            <property name="name">__isdisplay__idFactura_33_1</property>
+            <property name="value">2644</property>
+        </structure>
+        <structure>
+            <property name="name">__isdisplay__idioma_34_2</property>
+            <property name="value">1 - Español</property>
+        </structure>
+        <structure>
+            <property name="name">connectionURL_32_3</property>
+            <property name="value">jdbc:mysql://localhost:3306/assets</property>
+        </structure>
+        <structure>
+            <property name="name">connectionURL_32_type_</property>
+            <property name="value">string</property>
+        </structure>
+        <structure>
+            <property name="name">idioma_34_4</property>
+            <property name="value">1</property>
+        </structure>
+        <structure>
+            <property name="name">idioma_34_type_</property>
+            <property name="value">string</property>
+        </structure>
+        <structure>
+            <property name="name">idFactura_33_5</property>
+            <property name="value">2644</property>
+        </structure>
+        <structure>
+            <property name="name">idFactura_33_type_</property>
+            <property name="value">integer</property>
+        </structure>
+    </list-property>
+</report>

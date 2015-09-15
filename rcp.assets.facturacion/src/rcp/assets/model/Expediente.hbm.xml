@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+	<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="rcp.assets.model">
+
+	<class name="Expediente" table="EXPEDIENTES">
+		<id name="idExpediente" column="idExpediente" unsaved-value="-1">
+			<generator class="native"/>
+		</id>
+		<one-to-one name="cargoExpediente"
+			property-ref="expediente" />
+			
+		<property name="idPeachtree" column="NO_PEACHTREE"/>
+		<property name="idJobTasa" column="JOB_ID_TASA"/>
+		<property name="idJobGNF" column="JOB_ID_GNF"/>
+		
+<!-- 
+		<many-to-one name="subareas"
+				column="idATENCION"
+				fetch="join"
+				unique="true"
+				not-null="false"/>
+ -->
+		<property name="noCia" column="NO_CIA"/>
+		<property name="noExpediente" column="NO_EXP"/>
+		<property name="noCliente" column="NO_Cliente"/>
+		<property name="nombre"/>
+		<property name="depto"/>
+		<property name="dspDepto"
+			formula="(select k.descripcion from deptos k
+				where k.DEPTO = depto)"/>
+		<property name="subarea"/>
+		<property name="dspSubArea"
+			formula="(select k.descripcion from subareas k
+				where k.DEPTO = depto and k.SUBAREA = subarea)"/>
+		<property name="fechaCierre" column="FECHA_CIERRE"/>
+		<property name="estado" column="STATUS"/>
+		<property name="dspEstado"
+			formula="(select k.descripcion from keywords k
+				where k.codigo = STATUS and k.tipo = 'Status expediente')"/>
+ 
+ 		<property name="fechaCreado" type="timestamp" column="CREADO"/>
+		<property name="fechaModificado" type="timestamp" column="MODIFICADO"/>
+		<property name="actualizado" column="ACTUALIZAR_YN"/>
+		
+<!--  ************  Campos propios de una sociedad panameña (considerar poner en clase aparte) ***************  -->
+		<property name="fechaInscripcion" column="FECHA_INSCRIPCION"/>
+		<property name="tomo"/>
+		<property name="folio"/>
+		<property name="asiento"/>
+		<property name="dv1" column="DIG_VERI1"/>
+		<property name="dv2" column="DIG_VERI2"/>
+		<property name="noEscritura" column="ESC_PUBLICA"/>
+		<property name="fechaEscritura" column="FECHA_ESCRITURA"/>
+		<property name="notaria" column="NOTARIA_ESC"/>
+		<property name="representanteLegal" column="REP_LEGAL"/>
+		
+	</class>
+	
+</hibernate-mapping>

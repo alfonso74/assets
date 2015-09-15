@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+	<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="rcp.assets.model">
+
+	<class name="Responsable" table="RESPONSABLES">
+		<id name="idResponsable" column="idRESPONSABLE" unsaved-value="-1">
+			<generator class="native"/>
+		</id>
+		<property name="noCia" column="NO_CIA"/>
+		<property name="noCliente" column="NO_CLIENTE"/>
+		<property name="nombre"/>
+		<property name="alias"/>
+		<property name="nombreComercial" column="NOMBRE_COMERCIAL"/>
+		<property name="contacto"/>
+		<property name="telefono1"/>
+		<property name="telefono2"/>
+		<property name="fax1"/>
+		<property name="fax2"/>
+		<property name="email1"/>
+		<property name="email2"/>
+		<property name="excentoImpuesto" column="EXCENTO_TAX"/>
+		<property name="idioma"/>
+		<property name="estado"/>
+		<property name="direccion1"/>
+		<property name="direccion2"/>
+		<property name="direccion3"/>
+		<property name="direccion4"/>
+		<property name="direccion5"/>
+		
+		<property name="fechaCreado" type="timestamp" column="CREADO"/>
+		<property name="fechaModificado" type="timestamp" column="MODIFICADO"/>
+		<property name="actualizado" column="ACTUALIZAR_YN"/>
+		
+		<!-- IMPORTANTE: inverse="true", como del otro lado es un mirror, se usa para indicar quien actualiza, y -->
+		<!-- si no se pone, se duplica el idResponsable en el insert. -->
+		<set name="listaDirecciones" order-by="NOMBRE" inverse="true"
+			cascade="all, delete-orphan">
+			<key column="idResponsable" not-null="true"/>
+			<one-to-many class="rcp.assets.model.Direccion"/>
+		</set>
+		<set name="listaAtenciones" order-by="DESCRIPCION" inverse="true"
+			cascade="all, delete-orphan">
+			<key column="idResponsable" not-null="true"/>
+			<one-to-many class="rcp.assets.model.Atencion"/>
+		</set>
+	</class>
+	
+</hibernate-mapping>

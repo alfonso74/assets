@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+	<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="rcp.assets.model">
+
+	<class name="Keyword" table="keywords">
+		<id name="idKeyword" column="idKeyword" unsaved-value="-1">
+			<generator class="native"/>
+		</id>
+		<property name="codigo"/>
+		<property name="descripcion"/>
+		<property name="tipo"/>
+		<property name="posicion"/>
+		<property name="estado"/>
+	</class>
+	
+	
+	
+	<class name="Mes" table="MESES">
+		<id name="idMes" column="idMes">
+			<generator class="assigned"/>
+		</id>
+		<timestamp name="modificado" unsaved-value="null"/>
+		<property name="descripcion"/>
+		<property name="descripcionIngles" column="DESC_INGLES"/>
+	</class>
+	
+</hibernate-mapping>

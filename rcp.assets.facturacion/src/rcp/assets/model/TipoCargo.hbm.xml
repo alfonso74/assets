@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+	<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="rcp.assets.model">
+
+	<class name="TipoCargo" table="TIPO_CARGOS">
+		<id name="idTipoCargo" column="idTIPO_CARGO" unsaved-value="-1">
+			<generator class="native"/>
+		</id>
+		<property name="noTipoCargo" column="NO_TIPO_CARGO"/>
+		<property name="descripcion"/>
+		<property name="descripcionIngles" column="DESC_INGLES"/>
+		<property name="valor"/>
+		<property name="estado"/>
+		<property name="dspEstado"
+			formula="(select k.descripcion from keywords k
+				where k.codigo = estado and k.tipo = 'Status general')"/>
+		<property name="prioridad" column="PRIORIDAD"/>
+		<property name="honorario" column="HONORARIO_YN"/>
+		<property name="pagaImpuesto" column="ITBMS_YN"/>
+		<property name="ingreso" column="IND_NO_INGRESO"/>
+		<property name="nivel1" column="NIVEL_1"/>
+		<property name="nivel2" column="NIVEL_2"/>
+		<property name="nivel3" column="NIVEL_3"/>
+		<property name="nivel4" column="NIVEL_4"/>
+		<property name="nivel5" column="NIVEL_5"/>
+	</class>
+	
+</hibernate-mapping>

@@ -1,0 +1,1171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 3.7.2.v20120213 Build &lt;3.7.2.v20120214-1408></property>
+    <simple-property-list name="includeResource">
+        <value>connectionProfileStore</value>
+    </simple-property-list>
+    <list-property name="propertyBindings">
+        <structure>
+            <property name="name">queryText</property>
+            <property name="id">62</property>
+        </structure>
+        <structure>
+            <property name="name">queryTimeOut</property>
+            <property name="id">62</property>
+        </structure>
+        <structure>
+            <property name="name">rowFetchSize</property>
+            <property name="id">62</property>
+        </structure>
+        <structure>
+            <property name="name">odaURL</property>
+            <property name="id">201</property>
+            <expression name="value" type="javascript">params["connectionURL"].value</expression>
+        </structure>
+    </list-property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/grouped_listing.gif</property>
+    <property name="cheatSheet">org.eclipse.birt.report.designer.ui.cheatsheet.groupedlisting</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <parameters>
+        <scalar-parameter name="idCaso" id="153">
+            <property name="valueType">static</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">8729</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="connectionURL" id="203">
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">jdbc:mysql://localhost:3306/assets</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="impuesto" id="210">
+            <property name="valueType">static</property>
+            <property name="dataType">decimal</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">0</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Fixed</property>
+                <property name="pattern">###0.00{RoundingMode=HALF_UP}</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="idioma" id="218">
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">1</value>
+            </simple-property-list>
+            <list-property name="selectionList">
+                <structure>
+                    <property name="value">1</property>
+                    <property name="label">1-Español</property>
+                </structure>
+                <structure>
+                    <property name="value">2</property>
+                    <property name="label">2-Inglés</property>
+                </structure>
+            </list-property>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">true</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Assets Produccion" id="201">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://localhost:3306/assets</property>
+            <property name="odaUser">lnotes</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">bG5vdGVz</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="LineasCargos" id="44">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">noCaso</property>
+                    <property name="paramName">idCaso</property>
+                    <property name="dataType">integer</property>
+                    <property name="position">1</property>
+                    <expression name="defaultValue" type="javascript">8729</expression>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">noCaso2</property>
+                    <property name="paramName">idCaso</property>
+                    <property name="dataType">integer</property>
+                    <property name="position">2</property>
+                    <expression name="defaultValue" type="javascript">8729</expression>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">descripcion</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">desc_ingles</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">prioridad</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">totalCargo</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Assets Produccion</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">descripcion</property>
+                    <property name="nativeName">descripcion</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">desc_ingles</property>
+                    <property name="nativeName">desc_ingles</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">prioridad</property>
+                    <property name="nativeName">prioridad</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">totalCargo</property>
+                    <property name="nativeName">totalCargo</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select * from (
+(SELECT tc.descripcion, tc.desc_ingles, tc.prioridad, sum(d.monto) as totalCargo FROM det_cargos d
+left outer join tipo_cargos tc on tc.no_tipo_cargo = d.no_tipo_cargo
+inner join cargos c on c.idCargo = d.idCargo
+inner join casos caso on caso.idCaso = c.idCaso
+where caso.idCaso = ? and d.idGrupo is null
+group by descripcion, desc_ingles, prioridad)
+union
+(SELECT g.descripcion, g.descripcion, g.grupo, sum(d.monto) as totalCargo
+FROM det_cargos d
+left outer join tipo_cargos tc on tc.no_tipo_cargo = d.no_tipo_cargo
+inner join grupo_cargos g on g.idGrupo = d.idGrupo
+inner join cargos c on c.idCargo = d.idCargo
+inner join casos caso on caso.idCaso = c.idCaso
+where caso.idCaso = ? and d.idGrupo is not null
+group by g.descripcion, g.descripcion, g.grupo)
+) detalles
+where totalCargo > 0
+order by prioridad, descripcion]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Direccion" id="62">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">idDIRECCION</property>
+                    <property name="alias">idDIRECCION</property>
+                    <property name="analysis">measure</property>
+                </structure>
+                <structure>
+                    <property name="columnName">idRESPONSABLE</property>
+                    <property name="alias">idRESPONSABLE</property>
+                    <property name="analysis">measure</property>
+                </structure>
+                <structure>
+                    <property name="columnName">NO_CIA</property>
+                    <property name="alias">NO_CIA</property>
+                    <property name="analysis">dimension</property>
+                </structure>
+                <structure>
+                    <property name="columnName">NO_DIRECCION</property>
+                    <property name="alias">NO_DIRECCION</property>
+                    <property name="analysis">measure</property>
+                </structure>
+                <structure>
+                    <property name="columnName">NOMBRE</property>
+                    <property name="alias">NOMBRE</property>
+                    <property name="analysis">dimension</property>
+                </structure>
+                <structure>
+                    <property name="columnName">DIRECCION1</property>
+                    <property name="alias">DIRECCION1</property>
+                    <property name="analysis">dimension</property>
+                </structure>
+                <structure>
+                    <property name="columnName">DIRECCION2</property>
+                    <property name="alias">DIRECCION2</property>
+                    <property name="analysis">dimension</property>
+                </structure>
+                <structure>
+                    <property name="columnName">DIRECCION3</property>
+                    <property name="alias">DIRECCION3</property>
+                    <property name="analysis">dimension</property>
+                </structure>
+                <structure>
+                    <property name="columnName">DIRECCION4</property>
+                    <property name="alias">DIRECCION4</property>
+                    <property name="analysis">dimension</property>
+                </structure>
+                <structure>
+                    <property name="columnName">DIRECCION5</property>
+                    <property name="alias">DIRECCION5</property>
+                    <property name="analysis">dimension</property>
+                </structure>
+                <structure>
+                    <property name="columnName">ESTADO</property>
+                    <property name="alias">ESTADO</property>
+                    <property name="analysis">dimension</property>
+                </structure>
+                <structure>
+                    <property name="columnName">CREADO</property>
+                    <property name="alias">CREADO</property>
+                    <property name="analysis">dimension</property>
+                </structure>
+                <structure>
+                    <property name="columnName">MODIFICADO</property>
+                    <property name="alias">MODIFICADO</property>
+                    <property name="analysis">dimension</property>
+                </structure>
+                <structure>
+                    <property name="columnName">ACTUALIZAR_YN</property>
+                    <property name="alias">ACTUALIZAR_YN</property>
+                    <property name="analysis">measure</property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">idCaso</property>
+                    <property name="paramName">idCaso</property>
+                    <property name="dataType">integer</property>
+                    <property name="position">1</property>
+                    <expression name="defaultValue" type="javascript">2587</expression>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">idDIRECCION</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">idRESPONSABLE</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">NO_CIA</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">NO_DIRECCION</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">NOMBRE</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">DIRECCION1</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">DIRECCION2</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">DIRECCION3</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">DIRECCION4</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">DIRECCION5</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">ESTADO</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">CREADO</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">MODIFICADO</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">14</property>
+                        <property name="name">ACTUALIZAR_YN</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Assets Produccion</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">idDIRECCION</property>
+                    <property name="nativeName">idDIRECCION</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">idRESPONSABLE</property>
+                    <property name="nativeName">idRESPONSABLE</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">NO_CIA</property>
+                    <property name="nativeName">NO_CIA</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">NO_DIRECCION</property>
+                    <property name="nativeName">NO_DIRECCION</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">NOMBRE</property>
+                    <property name="nativeName">NOMBRE</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">DIRECCION1</property>
+                    <property name="nativeName">DIRECCION1</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">DIRECCION2</property>
+                    <property name="nativeName">DIRECCION2</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">DIRECCION3</property>
+                    <property name="nativeName">DIRECCION3</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">DIRECCION4</property>
+                    <property name="nativeName">DIRECCION4</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">DIRECCION5</property>
+                    <property name="nativeName">DIRECCION5</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">ESTADO</property>
+                    <property name="nativeName">ESTADO</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">CREADO</property>
+                    <property name="nativeName">CREADO</property>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">MODIFICADO</property>
+                    <property name="nativeName">MODIFICADO</property>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="position">14</property>
+                    <property name="name">ACTUALIZAR_YN</property>
+                    <property name="nativeName">ACTUALIZAR_YN</property>
+                    <property name="dataType">integer</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select d.*
+from direcciones d
+inner join casos c on c.idDireccion = d.idDireccion
+where c.idCaso = ?]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Expediente" id="154">
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">idCaso</property>
+                    <property name="paramName">idCaso</property>
+                    <property name="dataType">integer</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">NO_CIA</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">NO_EXP</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">NOMBRE</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Assets Produccion</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">NO_CIA</property>
+                    <property name="nativeName">NO_CIA</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">NO_EXP</property>
+                    <property name="nativeName">NO_EXP</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">NOMBRE</property>
+                    <property name="nativeName">NOMBRE</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select exp.no_cia, exp.no_exp, exp.nombre
+from expedientes exp
+inner join casos c on c.idExpediente = exp.idExpediente
+where c.idCaso = ?]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Caso" id="155">
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">idCaso</property>
+                    <property name="paramName">idCaso</property>
+                    <property name="dataType">integer</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">NO_CASO</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">NATURALEZA</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">NO_CLIENTE</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">NO_EXP</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">NOMBRE</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Assets Produccion</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">NO_CASO</property>
+                    <property name="nativeName">NO_CASO</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">NATURALEZA</property>
+                    <property name="nativeName">NATURALEZA</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">NO_CLIENTE</property>
+                    <property name="nativeName">NO_CLIENTE</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">NO_EXP</property>
+                    <property name="nativeName">NO_EXP</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">NOMBRE</property>
+                    <property name="nativeName">NOMBRE</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select c.no_caso, c.naturaleza, c.no_cliente, e.no_exp, cia.nombre
+from casos c
+inner join expedientes e on e.idExpediente = c.idExpediente
+inner join companias cia on cia.no_cia = c.no_cia
+where idCaso = ?]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="38">
+            <property name="fontFamily">"Arial"</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="41">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="42">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <property name="topMargin">0.25in</property>
+            <property name="leftMargin">0.5in</property>
+            <property name="rightMargin">0.5in</property>
+            <property name="headerHeight">0.25in</property>
+            <page-footer>
+                <grid id="3">
+                    <property name="verticalAlign">bottom</property>
+                    <property name="width">100%</property>
+                    <column id="4"/>
+                    <row id="178">
+                        <cell id="179">
+                            <grid id="193">
+                                <column id="194"/>
+                                <column id="195"/>
+                                <row id="196">
+                                    <cell id="197">
+                                        <data id="199">
+                                            <property name="textAlign">right</property>
+                                            <property name="dataSet">Caso</property>
+                                            <list-property name="boundDataColumns">
+                                                <structure>
+                                                    <property name="name">NO_CLIENTE</property>
+                                                    <text-property name="displayName">NO_CLIENTE</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["NO_CLIENTE"]</expression>
+                                                    <property name="dataType">integer</property>
+                                                </structure>
+                                            </list-property>
+                                            <property name="resultSetColumn">NO_CLIENTE</property>
+                                        </data>
+                                    </cell>
+                                    <cell id="198">
+                                        <data id="200">
+                                            <property name="paddingLeft">50pt</property>
+                                            <property name="dataSet">Expediente</property>
+                                            <list-property name="boundDataColumns">
+                                                <structure>
+                                                    <property name="name">NO_EXP</property>
+                                                    <text-property name="displayName">NO_EXP</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["NO_EXP"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                            </list-property>
+                                            <property name="resultSetColumn">NO_EXP</property>
+                                        </data>
+                                    </cell>
+                                </row>
+                            </grid>
+                        </cell>
+                    </row>
+                    <row id="5">
+                        <cell id="6"/>
+                    </row>
+                </grid>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <grid id="8">
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">FechaActual</property>
+                    <text-property name="displayName">Fecha_Actual_Esp</text-property>
+                    <expression name="expression" type="javascript">new Date()</expression>
+                    <property name="dataType">date-time</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Fecha_Actual_Eng</property>
+                    <text-property name="displayName">Fecha_Actual_Eng</text-property>
+                    <expression name="expression" type="javascript">new Date()</expression>
+                    <property name="dataType">date</property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <column id="9"/>
+            <row id="10">
+                <property name="height">0.4in</property>
+                <property name="verticalAlign">text-bottom</property>
+                <cell id="11">
+                    <property name="verticalAlign">top</property>
+                    <data id="204">
+                        <property name="fontSize">12pt</property>
+                        <property name="fontWeight">bold</property>
+                        <property name="textAlign">center</property>
+                        <property name="dataSet">Caso</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">NOMBRE</property>
+                                <text-property name="displayName">NOMBRE</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["NOMBRE"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">NOMBRE</property>
+                    </data>
+                </cell>
+            </row>
+            <row id="211">
+                <property name="height">0.21875in</property>
+                <property name="verticalAlign">text-bottom</property>
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">params["idioma"].value != '1'</expression>
+                    </structure>
+                </list-property>
+                <cell id="212">
+                    <property name="verticalAlign">top</property>
+                    <data id="214">
+                        <property name="paddingLeft">1pt</property>
+                        <property name="paddingRight">25pt</property>
+                        <structure name="dateTimeFormat">
+                            <property name="category">Custom</property>
+                            <property name="pattern">dd 'de' MMMM 'de' yyyy hh:mm a</property>
+                            <property name="locale">es</property>
+                        </structure>
+                        <property name="textAlign">right</property>
+                        <property name="resultSetColumn">FechaActual</property>
+                    </data>
+                </cell>
+            </row>
+            <row id="219">
+                <property name="height">0.21875in</property>
+                <property name="verticalAlign">text-bottom</property>
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">params["idioma"].value == '1'</expression>
+                    </structure>
+                </list-property>
+                <cell id="220">
+                    <property name="verticalAlign">top</property>
+                    <data id="237">
+                        <property name="paddingRight">25pt</property>
+                        <structure name="dateTimeFormat">
+                            <property name="category">Custom</property>
+                            <property name="pattern">MMMM dd, yyyy hh:mm a</property>
+                            <property name="locale">en_US</property>
+                        </structure>
+                        <property name="textAlign">right</property>
+                        <property name="resultSetColumn">Fecha_Actual_Eng</property>
+                    </data>
+                </cell>
+            </row>
+        </grid>
+        <grid id="45">
+            <column id="46"/>
+            <column id="47"/>
+            <column id="48"/>
+            <row id="57">
+                <cell id="58">
+                    <property name="colSpan">2</property>
+                    <property name="rowSpan">1</property>
+                    <grid id="64">
+                        <column id="65"/>
+                        <row id="81">
+                            <cell id="82">
+                                <data id="83">
+                                    <property name="dataSet">Direccion</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">NOMBRE</property>
+                                            <text-property name="displayName">NOMBRE</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["NOMBRE"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">NOMBRE</property>
+                                </data>
+                            </cell>
+                        </row>
+                        <row id="66">
+                            <cell id="67">
+                                <data id="76">
+                                    <property name="dataSet">Direccion</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">DIRECCION1</property>
+                                            <text-property name="displayName">DIRECCION1</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["DIRECCION1"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">DIRECCION1</property>
+                                </data>
+                            </cell>
+                        </row>
+                        <row id="68">
+                            <cell id="69">
+                                <data id="77">
+                                    <property name="dataSet">Direccion</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">DIRECCION2</property>
+                                            <text-property name="displayName">DIRECCION2</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["DIRECCION2"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">DIRECCION2</property>
+                                </data>
+                            </cell>
+                        </row>
+                        <row id="70">
+                            <cell id="71">
+                                <data id="78">
+                                    <property name="dataSet">Direccion</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">DIRECCION3</property>
+                                            <text-property name="displayName">DIRECCION3</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["DIRECCION3"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">DIRECCION3</property>
+                                </data>
+                            </cell>
+                        </row>
+                        <row id="72">
+                            <cell id="73">
+                                <data id="79">
+                                    <property name="dataSet">Direccion</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">DIRECCION4</property>
+                                            <text-property name="displayName">DIRECCION4</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["DIRECCION4"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">DIRECCION4</property>
+                                </data>
+                            </cell>
+                        </row>
+                        <row id="74">
+                            <cell id="75">
+                                <data id="80">
+                                    <property name="dataSet">Direccion</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">DIRECCION5</property>
+                                            <text-property name="displayName">DIRECCION5</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["DIRECCION5"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">DIRECCION5</property>
+                                </data>
+                            </cell>
+                        </row>
+                    </grid>
+                </cell>
+                <cell id="60">
+                    <property name="verticalAlign">top</property>
+                    <label id="61">
+                        <property name="fontSize">18pt</property>
+                        <property name="fontWeight">bold</property>
+                        <property name="paddingTop">15pt</property>
+                        <property name="textAlign">center</property>
+                        <property name="display">block</property>
+                        <text-property name="text">Proforma</text-property>
+                    </label>
+                </cell>
+            </row>
+        </grid>
+        <grid id="84">
+            <property name="width">7.447916666666667in</property>
+            <column id="85">
+                <property name="width">2.4895833333333335in</property>
+            </column>
+            <column id="86">
+                <property name="width">2.09375in</property>
+            </column>
+            <column id="87">
+                <property name="width">2.8645833333333335in</property>
+            </column>
+            <row id="156">
+                <cell id="157"/>
+                <cell id="158"/>
+                <cell id="159"/>
+            </row>
+            <row id="88">
+                <property name="height">0.4in</property>
+                <cell id="89">
+                    <property name="colSpan">3</property>
+                    <property name="rowSpan">1</property>
+                    <data id="160">
+                        <property name="fontWeight">bold</property>
+                        <property name="textAlign">center</property>
+                        <property name="dataSet">Expediente</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">NOMBRE</property>
+                                <text-property name="displayName">NOMBRE</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["NOMBRE"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">NOMBRE</property>
+                    </data>
+                </cell>
+            </row>
+            <row id="145">
+                <cell id="146"/>
+                <cell id="147"/>
+                <cell id="148">
+                    <property name="paddingRight">1pt</property>
+                    <property name="textAlign">right</property>
+                    <data id="177">
+                        <property name="paddingRight">25pt</property>
+                        <property name="dataSet">Caso</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">NO_CASO</property>
+                                <text-property name="displayName">EXP-CASO</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["NO_EXP"] + " / " + dataSetRow["NO_CASO"]</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">NO_CASO</property>
+                    </data>
+                </cell>
+            </row>
+            <row id="149">
+                <property name="height">0.6in</property>
+                <property name="canShrink">true</property>
+                <cell id="150">
+                    <property name="colSpan">2</property>
+                    <property name="rowSpan">1</property>
+                    <data id="163">
+                        <property name="paddingLeft">10pt</property>
+                        <property name="display">block</property>
+                        <property name="canShrink">true</property>
+                        <property name="dataSet">Caso</property>
+                        <list-property name="visibility"/>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">NATURALEZA</property>
+                                <text-property name="displayName">NATURALEZA</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["NATURALEZA"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">NATURALEZA</property>
+                    </data>
+                </cell>
+                <cell id="152"/>
+            </row>
+            <row id="92">
+                <cell id="93"/>
+                <cell id="94"/>
+                <cell id="95"/>
+            </row>
+        </grid>
+        <table id="96">
+            <property name="dataSet">LineasCargos</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">descripcion</property>
+                    <text-property name="displayName">descripcion</text-property>
+                    <expression name="expression" type="javascript">if (params["idioma"].value == '1') {&#13;
+   dataSetRow["descripcion"]&#13;
+} else {&#13;
+   dataSetRow["desc_ingles"]&#13;
+}</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <text-property name="displayName">Total</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["totalCargo"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Column Binding</property>
+                    <text-property name="displayName">IMPUESTO_LABEL</text-property>
+                    <expression name="expression" type="javascript">"I.T.B.M.S. (7%)"</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Impuesto_Data</property>
+                    <text-property name="displayName">IMPUESTO_DATA</text-property>
+                    <expression name="expression" type="javascript">params["impuesto"].value</expression>
+                    <property name="dataType">decimal</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">MontoTotal</property>
+                    <text-property name="displayName">MontoTotal</text-property>
+                    <expression name="expression" type="javascript">row["Aggregation"] + params["impuesto"].value</expression>
+                    <property name="dataType">decimal</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">totalCargo</property>
+                    <text-property name="displayName">totalCargo</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["totalCargo"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <column id="106"/>
+            <column id="107"/>
+            <header>
+                <row id="97">
+                    <cell id="98">
+                        <property name="paddingLeft">10pt</property>
+                    </cell>
+                    <cell id="99"/>
+                </row>
+            </header>
+            <detail>
+                <row id="100">
+                    <cell id="101">
+                        <data id="116">
+                            <property name="paddingLeft">10pt</property>
+                            <property name="resultSetColumn">descripcion</property>
+                        </data>
+                    </cell>
+                    <cell id="102">
+                        <data id="239">
+                            <property name="paddingRight">25pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Fixed</property>
+                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                                <property name="locale">en_US</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">totalCargo</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="205">
+                    <property name="height">0.4166666666666667in</property>
+                    <property name="verticalAlign">bottom</property>
+                    <list-property name="visibility">
+                        <structure>
+                            <property name="format">all</property>
+                            <expression name="valueExpr" type="javascript">params["impuesto"].value == 0</expression>
+                        </structure>
+                    </list-property>
+                    <cell id="206">
+                        <property name="paddingLeft">1pt</property>
+                        <property name="verticalAlign">bottom</property>
+                        <data id="215">
+                            <property name="paddingLeft">10pt</property>
+                            <property name="resultSetColumn">Column Binding</property>
+                        </data>
+                    </cell>
+                    <cell id="207">
+                        <property name="verticalAlign">bottom</property>
+                        <data id="216">
+                            <property name="paddingRight">25pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Fixed</property>
+                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                                <property name="locale">en_US</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">Impuesto_Data</property>
+                        </data>
+                    </cell>
+                </row>
+                <row id="135">
+                    <cell id="136">
+                        <property name="paddingLeft">1pt</property>
+                        <data id="130">
+                            <property name="fontWeight">bold</property>
+                            <property name="paddingLeft">10pt</property>
+                            <property name="paddingRight">25pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$#,##0.00{RoundingMode=HALF_UP}</property>
+                                <property name="locale">en_US</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <list-property name="visibility">
+                                <structure>
+                                    <property name="format">all</property>
+                                    <expression name="valueExpr" type="javascript">true</expression>
+                                </structure>
+                            </list-property>
+                            <property name="resultSetColumn">Aggregation</property>
+                        </data>
+                    </cell>
+                    <cell id="137">
+                        <label id="143">
+                            <property name="paddingRight">25pt</property>
+                            <property name="textAlign">right</property>
+                            <text-property name="text">______________________</text-property>
+                        </label>
+                    </cell>
+                </row>
+                <row id="103">
+                    <cell id="104">
+                        <label id="144">
+                            <property name="paddingLeft">10pt</property>
+                            <text-property name="text">TOTAL US$:</text-property>
+                        </label>
+                    </cell>
+                    <cell id="105">
+                        <data id="217">
+                            <property name="fontWeight">bold</property>
+                            <property name="paddingRight">25pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$#,##0.00{RoundingMode=HALF_UP}</property>
+                                <property name="locale">en_US</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">MontoTotal</property>
+                        </data>
+                    </cell>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>

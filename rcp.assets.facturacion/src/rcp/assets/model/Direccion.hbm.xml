@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+	<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="rcp.assets.model">
+
+	<class name="Direccion" table="DIRECCIONES">
+		<id name="idDireccion" column="idDIRECCION" unsaved-value="-1">
+			<generator class="native"/>
+		</id>
+		<many-to-one name="responsable"
+				column="idRESPONSABLE"
+				fetch="join"
+				unique="true"
+				not-null="true"/>
+		<property name="noCia" column="NO_CIA"/>
+		<property name="noDireccion" column="NO_DIRECCION"/>
+		<property name="nombreAlterno" column="NOMBRE"/>
+		<property name="direccion1"/>
+		<property name="direccion2"/>
+		<property name="direccion3"/>
+		<property name="direccion4"/>
+		<property name="direccion5"/>
+		<property name="estado"/>
+		<property name="dspEstado"
+			formula="(select k.descripcion from keywords k
+				where k.codigo = estado and k.tipo = 'Status general')"/>
+		
+		<property name="fechaCreado" type="timestamp" column="CREADO"/>
+		<property name="fechaModificado" type="timestamp" column="MODIFICADO"/>
+		<property name="actualizado" column="ACTUALIZAR_YN"/>
+	</class>
+	
+</hibernate-mapping>

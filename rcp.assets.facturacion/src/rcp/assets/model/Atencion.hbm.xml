@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+	<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="rcp.assets.model">
+
+	<class name="Atencion" table="ATENCIONES">
+		<id name="idAtencion" column="idATENCION" unsaved-value="-1">
+			<generator class="native"/>
+		</id>
+		<many-to-one name="responsable"
+				column="idRESPONSABLE"
+				fetch="join"
+				unique="true"
+				not-null="true"/>
+		<property name="noCia" column="NO_CIA"/>
+		<property name="noAtencion" column="NO_ATENCION"/>
+		<property name="descripcion"/>
+		<property name="estado"/>
+		<property name="dspEstado"
+			formula="(select k.descripcion from keywords k
+				where k.codigo = estado and k.tipo = 'Status general')"/>
+		
+		<property name="fechaCreado" type="timestamp" column="CREADO"/>
+		<property name="fechaModificado" type="timestamp" column="MODIFICADO"/>
+		<property name="actualizado" column="ACTUALIZAR_YN"/>
+	</class>
+	
+</hibernate-mapping>

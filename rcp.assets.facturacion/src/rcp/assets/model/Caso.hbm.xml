@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+	<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="rcp.assets.model">
+
+	<class name="Caso" table="CASOS">
+		<id name="idCaso" column="idCASO" unsaved-value="-1">
+			<generator class="native"/>
+		</id>
+		<many-to-one name="expediente"
+				column="idEXPEDIENTE"
+				fetch="join"
+				unique="true"
+				not-null="true"/>
+		<many-to-one name="responsable"
+				column="idRESPONSABLE"
+				fetch="join"
+				unique="true"
+				not-null="true"/>
+		<many-to-one name="direccion"
+				column="idDIRECCION"
+				fetch="join"
+				unique="true"
+				not-null="false"/>
+		<many-to-one name="atencion"
+				column="idATENCION"
+				fetch="join"
+				unique="true"
+				not-null="false"/>
+		<property name="noCia" column="NO_CIA"/>
+		<property name="noCaso" column="NO_CASO"/>
+		<property name="naturaleza"/>
+		<property name="referencia" column="NO_REF"/>
+		<property name="fechaCierre" column="FECHA_CIERRE"/>
+		<property name="estado" column="STATUS"/>
+		<property name="dspEstado"
+			formula="(select k.descripcion from keywords k
+				where k.codigo = STATUS and k.tipo = 'Status caso')"/>
+		
+		<property name="fechaCreado" type="timestamp" column="CREADO"/>
+		<property name="fechaModificado" type="timestamp" column="MODIFICADO"/>
+		<property name="actualizado" column="ACTUALIZAR_YN"/>
+
+		<set name="listaCargos" order-by="NO_CARGO"
+			cascade="all">
+			<key column="idCaso" not-null="true"/>
+			<one-to-many class="rcp.assets.model.Cargo"/>
+		</set>
+
+	</class>
+	
+</hibernate-mapping>

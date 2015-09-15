@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+	<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="rcp.assets.model">
+
+	<class name="DetalleCargo" table="DET_CARGOS">
+		<id name="idDetalle" column="idDETALLE" unsaved-value="-1">
+			<generator class="native"/>
+		</id>
+		<many-to-one name="cargo"
+				column="idCARGO"
+				fetch="join"
+				unique="true"
+				not-null="true"/>
+		<many-to-one name="tipoCargo"
+				column="idTIPO_CARGO"
+				fetch="join"
+				unique="true"
+				not-null="true"/>
+		<many-to-one name="grupo"
+				column="idGRUPO"
+				fetch="join"
+				unique="true"
+				not-null="false"/>
+		<property name="monto"/>
+		<property name="secuencia"/>
+		<property name="nivel1" column="NIVEL_1"/>
+		<property name="nivel2" column="NIVEL_2"/>
+		<property name="nivel3" column="NIVEL_3"/>
+		<property name="nivel4" column="NIVEL_4"/>
+		<property name="nivel5" column="NIVEL_5"/>
+
+	</class>
+	
+</hibernate-mapping>

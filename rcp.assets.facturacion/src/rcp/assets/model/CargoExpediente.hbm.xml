@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+	<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="rcp.assets.model">
+
+	<class name="CargoExpediente" table="ANUALIDADES">
+		<id name="idCargoExpediente" column="idANUALIDAD" unsaved-value="-1">
+			<generator class="native" />
+		</id>
+		<many-to-one name="expediente" column="idEXPEDIENTE"
+			unique="true" not-null="true" />
+		<many-to-one name="responsable" column="idRESPONSABLE"
+			fetch="join" unique="true" not-null="true" />
+		<many-to-one name="direccion" column="idDIRECCION" fetch="join"
+			unique="true" not-null="false" />
+		<many-to-one name="atencion" column="idATENCION" unique="true"
+			fetch="join" not-null="false" />
+
+		<component name="retainer" class="Retainer">
+			<property name="retainer1" column="RETAINER" />
+			<property name="retainer2" />
+			<property name="retainer3" />
+			<property name="retainerOtros" column="OTROS_RETAINER" />
+			<property name="retainerOtrosDesc" column="OTROS_RETAINER_COM" />
+			<property name="totalRetainers"
+				formula="RETAINER + RETAINER2 + RETAINER3 + OTROS_RETAINER" />
+		</component>
+
+		<component name="cargosAnuales" class="CargosAnuales">
+			<property name="agenteResidente" column="AGENTE_RES" />
+			<property name="directores" column="CARGO_DIRECTOR" />
+			<property name="custodiaLibros" column="LIB_ACT" />
+			<property name="retransmision" />
+			<property name="servFiduciarios" column="SERV_FID" />
+			<property name="servFirmas" column="SERV_FIRMA" />
+			<property name="tasa" />
+			<property name="otros" />
+			<property name="otrosDetalle" column="OTROS_COM" />
+			<property name="totalCargosAnuales"
+				formula="AGENTE_RES + CARGO_DIRECTOR + LIB_ACT + RETRANSMISION + SERV_FID + SERV_FIRMA + TASA + OTROS" />
+		</component>
+
+		<property name="estado" column="STATUS" />
+
+		<property name="fechaCreado" type="timestamp" column="CREADO" />
+		<property name="fechaModificado" type="timestamp" column="MODIFICADO" />
+		<property name="actualizado" column="ACTUALIZAR_YN" />
+
+	</class>
+
+</hibernate-mapping>

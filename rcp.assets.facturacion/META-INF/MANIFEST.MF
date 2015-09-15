@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Facturacion
+Bundle-SymbolicName: rcp.assets.facturacion; singleton:=true
+Bundle-Version: 1.0.4.qualifier
+Bundle-Activator: rcp.assets.facturacion.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.hibernate;bundle-version="3.6.10",
+ org.apache.log4j;bundle-version="1.2.16",
+ com.mysql.jdbc;bundle-version="5.1.18",
+ org.eclipse.nebula.widgets.calendarcombo;bundle-version="1.0.0",
+ org.eclipse.nebula.widgets.pshelf;bundle-version="1.0.0",
+ org.eclipse.nebula.widgets.xviewer;bundle-version="0.9.9",
+ org.eclipse.ui.forms;bundle-version="3.5.101",
+ org.eclipse.birt.report.model;bundle-version="3.7.2",
+ org.eclipse.birt.report.engine;bundle-version="3.7.2",
+ com.lowagie.text;bundle-version="2.1.7"
+Eclipse-RegisterBuddy: org.apache.log4j, org.hibernate
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ClassPath: lib/poi-3.2-FINAL-20081019.jar,
+ .

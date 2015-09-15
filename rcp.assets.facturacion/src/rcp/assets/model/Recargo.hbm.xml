@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+	<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="rcp.assets.model">
+
+	<class name="Recargo" table="RECARGOS">
+		<id name="idRecargo" column="idRECARGO" unsaved-value="-1">
+			<generator class="native"/>
+		</id>
+		<property name="noCia" column="NO_CIA"/>
+		<property name="periodo" column="PERIODO"/>
+		<many-to-one name="tipoRecargo"
+				column="TIPO" 
+				fetch="join"
+				property-ref="codigo"
+				unique="true"
+				not-null="true"/>
+		<property name="monto" column="MONTO"/>
+		<property name="textoFactura" column="TXT_FACTURA"/>
+		<property name="textoIngles" column="TXT_INGLES"/>
+		<many-to-one name="estado"
+				column="ESTADO" 
+				fetch="join"
+				property-ref="codigo"
+				unique="false"
+				not-null="false"/>
+	</class>
+	
+</hibernate-mapping>

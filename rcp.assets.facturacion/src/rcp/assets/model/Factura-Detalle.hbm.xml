@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+	<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="rcp.assets.model">
+
+	<class name="Factura" table="FACTURAS">
+		<id name="idFactura" column="idFACTURA" unsaved-value="-1">
+			<generator class="native"/>
+		</id>
+		<discriminator column="tipo" type="string"/>
+		<many-to-one name="caso"
+				column="idCASO"
+				unique="true"
+				not-null="false"/>
+		<property name="periodoMM" column="PERIODO_MM"/>
+		<property name="periodoYY" column="PERIODO_YY"/>	
+		<property name="tipo" insert="false" update="false"/>
+		<property name="noFactura" column="NO_FACTURA"/>
+		<property name="noFisico" column="NO_FISICO"/>
+		<property name="noPeriodoTx" column="PEACHTREE_TX"/>
+		<property name="dspIdPeachtree" insert="false" update="false"
+			formula="(select e.NO_PEACHTREE from expedientes e
+				where e.NO_EXP = NO_EXPEDIENTE)"/>
+		<property name="noExpediente" column="NO_EXPEDIENTE"/>
+		<property name="noCliente" column="NO_CLIENTE"/>
+		<property name="refSecuencia" column="REF_SECUENCIA"/>
+		<property name="nombreExpediente" column="NOMBRE_EXP"/>
+		<property name="concepto"/>
+		<property name="nombreCliente" column="NOMBRE_CLI"/>
+		<property name="direccion1"/>
+		<property name="direccion2"/>
+		<property name="direccion3"/>
+		<property name="direccion4"/>
+		<property name="direccion5"/>
+		<property name="atencion"/>
+		<property name="fechaFactura" column="FECHA"/>
+		<property name="totalDetalle" column="TOTAL_DETALLE"/>
+		<property name="impuestoPorcentaje" column="IMPUESTO_PORC"/>
+		<property name="impuesto"/>
+		<property name="total"/>
+		<property name="saldo"/>
+		<property name="notificacion"/>
+		<property name="excentoImpuesto" column="EXCENTO_YN"/>
+		<property name="idioma"/>
+		<property name="estado"/>
+		
+		<property name="fechaCreado" type="timestamp" column="CREADO"/>
+		<property name="fechaModificado" type="timestamp" column="MODIFICADO"/>
+		
+		<!-- 
+		<set name="lineasRecargoTxt" order-by="idFACTURA, SECUENCIA" inverse="true"
+			cascade="all">
+			<key column="idFACTURA" not-null="true"/>
+			<one-to-many class="rcp.assets.model.LineaRecargoTxt"/>
+		</set>
+		 -->
+		
+		<list name="lineasRecargoTxt" inverse="true" cascade="all">
+			<key column="idFACTURA" not-null="true"/>
+			<list-index column="SECUENCIA"/>
+			<one-to-many class="rcp.assets.model.LineaRecargoTxt"/>
+		</list>
+		
+		
+		<subclass name="FacturaCaso" discriminator-value="CA">
+			<set name="listaDetalles" order-by="idFACTURA, SECUENCIA" inverse="true"
+					cascade="all">
+				<key column="idFACTURA" not-null="true"/>
+				<one-to-many class="rcp.assets.model.LineaFactura"/>
+			</set>
+			<!-- 
+			<join table="DET_FACTURAS">
+				<key column="idDETALLE"/>
+			</join>
+			 -->
+		</subclass>
+		
+		
+		<subclass name="FacturaRetainer" discriminator-value="RE">
+			<join table="DET_RETAINERS">
+				<key column="idFACTURA"/>
+				<!--  <many-to-one name="factura" column="idFACTURA" class="Factura"/> -->
+				<property name="retainer1"/>
+				<property name="retainer2"/>
+				<property name="retainer3"/>
+				<property name="otroRetainer" column="OTRO_RETAINER"/>
+				<property name="otroRetainerCom" column="OTRO_RETAINER_COM"/>
+			</join>
+		</subclass>
+		
+		
+		<subclass name="FacturaAnualidad" discriminator-value="AN">
+			<join table="DET_ANUALIDADES">
+				<key column="idFACTURA"/>
+				<property name="agenteResidente" column="AGENTE_RES"/>
+				<property name="directores" column="DIRECTORES"/>
+				<property name="custodiaLibros" column="LIB_ACT"/>
+				<property name="retransmision"/>
+				<property name="servFiduciarios" column="SERV_FID"/>
+				<property name="servFirma" column="SERV_FIRMA"/>
+				<property name="tasa"/>
+				<property name="otros"/>
+				<property name="otrosDetalle" column="OTROS_COM"/>
+			</join>
+		</subclass>
+
+	</class>
+	
+	<class name="LineaFactura" table="DET_FACTURAS">
+		<id name="idDetalle" column="idDETALLE" unsaved-value="-1">
+			<generator class="native"/>
+		</id>
+		<many-to-one name="factura"
+				column="idFACTURA"
+				unique="true"
+				not-null="true"/>
+		<many-to-one name="tipoCargo"
+				column="idTIPO_CARGO"
+				fetch="join"
+				unique="true"
+				not-null="false"/>
+		<many-to-one name="grupo"
+				column="idGRUPO"
+				fetch="join"
+				unique="true"
+				not-null="false"/>
+		<property name="descripcion"/>
+		<property name="monto"/>
+		<property name="pagaImpuesto" column="ITBMS_YN"/>
+		<property name="secuencia"/>
+	</class>
+	
+	<class name="LineaRecargoTxt" table="DET_RECARGOS_TXT">
+		<id name="idRecargoTxt" column="idRECARGO_TXT" unsaved-value="-1">
+			<generator class="native"/>
+		</id>
+		<many-to-one name="factura"
+				column="idFACTURA"
+				unique="true"
+				not-null="true"/>
+		<property name="descripcion"/>
+		<property name="monto"/>
+		<property name="secuencia"/>
+	</class>
+	
+</hibernate-mapping>
