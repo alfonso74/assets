@@ -296,7 +296,9 @@ public class VerFacturasController {
 				}
 
 				//System.out.println("ROW: " + row.getRowNum());
-				if (row.getRowNum() > 0 & row.getRowNum() < 7) {
+				if (row.getRowNum() == 0) {
+					row.setHeightInPoints(15.75f + 0.0f);    // el 0.0f podemos usarlo como first line offset
+				} else if (row.getRowNum() > 0 & row.getRowNum() < 7) {
 					row.setHeightInPoints(12.75F);
 				}
 				System.out.println();
@@ -311,7 +313,7 @@ public class VerFacturasController {
 
 			HSSFPrintSetup margenes = sheet.getPrintSetup();
 			System.out.println("Footer margin: " + margenes.getFooterMargin());
-			margenes.setFooterMargin((double) 0.2);
+			margenes.setFooterMargin((double) 0.3);
 			System.out.println("Footer margin: " + margenes.getFooterMargin());
 
 			FileOutputStream fileOut = new FileOutputStream(rutaArchivoExcel);

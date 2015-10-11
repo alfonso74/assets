@@ -11,7 +11,7 @@
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 		<!-- Conexión a utilizar: -->
 		<!-- property name="connection.url">jdbc:mysql://192.168.0.211:3306/test</property -->
-		<property name="connection.url">jdbc:mysql://localhost:3306/assetsx</property>
+		<property name="connection.url">jdbc:mysql://192.168.0.179:3306/assets</property>
 		<!-- property name="connection.url">jdbc:mysql://servidor:3306/test</property -->
 
 		<property name="connection.username">lnotes</property>

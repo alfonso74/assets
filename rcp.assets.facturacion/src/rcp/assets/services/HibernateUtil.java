@@ -35,15 +35,18 @@ public class HibernateUtil {
 			
 			String servidor = "192.168.0.179";
 			servidor = "localhost";
-			//servidor = "192.168.2.100";
 			String schema = "assets";
 			connectionURL = "jdbc:mysql://" + servidor + ":3306/" + schema;
 			
-			LOGGER.debug("URL de conexión (HibernateUtil.java): " + connectionURL);
-			
 			Configuration config = new Configuration().configure(CONFIG_FILE_LOCATION);
 			//Configuration config = new Configuration().configure();
-			config.setProperty("hibernate.connection.url", connectionURL);
+			String connUrl = config.getProperty("hibernate.connection.url");
+			if (connUrl == null || connUrl.isEmpty()) {
+				config.setProperty("hibernate.connection.url", connectionURL);
+			} else {
+				connectionURL = connUrl;
+			}
+			LOGGER.debug("URL de conexión (HibernateUtil.java): " + connectionURL);
 			sessionFactory = config.buildSessionFactory();
 			
 			LOGGER.debug("Hash code: " + "kalito plaga".hashCode());

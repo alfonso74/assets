@@ -417,7 +417,8 @@ order by secuencia]]></xml-property>
                         <property name="height">0.21875in</property>
                         <property name="verticalAlign">bottom</property>
                         <cell id="227"/>
-                        <cell id="197">
+                        <cell id="197"/>
+                        <cell id="198">
                             <data id="199">
                                 <property name="fontFamily">"Courier"</property>
                                 <property name="textAlign">right</property>
@@ -512,7 +513,6 @@ order by secuencia]]></xml-property>
                                 <property name="resultSetColumn">NO_CLIENTE</property>
                             </data>
                         </cell>
-                        <cell id="198"/>
                     </row>
                 </grid>
             </page-footer>
@@ -556,7 +556,7 @@ order by secuencia]]></xml-property>
                 <cell id="250">
                     <property name="colSpan">2</property>
                     <property name="rowSpan">1</property>
-                    <property name="verticalAlign">middle</property>
+                    <property name="verticalAlign">bottom</property>
                     <data id="235">
                         <property name="fontFamily">"Courier"</property>
                         <property name="paddingRight">25pt</property>
@@ -677,7 +677,7 @@ order by secuencia]]></xml-property>
                 <cell id="251">
                     <property name="colSpan">2</property>
                     <property name="rowSpan">1</property>
-                    <property name="verticalAlign">middle</property>
+                    <property name="verticalAlign">bottom</property>
                     <data id="214">
                         <property name="fontFamily">"Courier"</property>
                         <property name="paddingLeft">1pt</property>
@@ -926,7 +926,7 @@ order by secuencia]]></xml-property>
                 </cell>
             </row>
             <row id="253">
-                <property name="height">0.125in</property>
+                <property name="height">0.1in</property>
                 <cell id="254"/>
                 <cell id="255">
                     <property name="verticalAlign">top</property>
