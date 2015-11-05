@@ -18,4 +18,5 @@ Export-Package: org.eclipse.nebula.widgets.calendarcombo,
  org.eclipse.nebula.widgets.xviewer.util.internal,
  org.eclipse.nebula.widgets.xviewer.util.internal.dialog,
  org.eclipse.nebula.widgets.xviewer.util.internal.images
+Require-Bundle: org.eclipse.swt;bundle-version="3.7.2"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
