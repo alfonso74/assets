@@ -3,4 +3,19 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Widgets Plug-in for Assets Project
 Bundle-SymbolicName: org.eclipse.nebula.widgets
 Bundle-Version: 2.0
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ClassPath: org.eclipse.nebula.widgets.calendarcombo_1.0.0.201305101602.jar,
+ org.eclipse.nebula.widgets.pshelf_1.0.0.201305101602.jar,
+ org.eclipse.nebula.widgets.xviewer_0.9.9.201305101602.jar
+Export-Package: org.eclipse.nebula.widgets.calendarcombo,
+ org.eclipse.nebula.widgets.pshelf,
+ org.eclipse.nebula.widgets.xviewer,
+ org.eclipse.nebula.widgets.xviewer.action,
+ org.eclipse.nebula.widgets.xviewer.column,
+ org.eclipse.nebula.widgets.xviewer.customize,
+ org.eclipse.nebula.widgets.xviewer.customize.dialog,
+ org.eclipse.nebula.widgets.xviewer.edit,
+ org.eclipse.nebula.widgets.xviewer.util,
+ org.eclipse.nebula.widgets.xviewer.util.internal,
+ org.eclipse.nebula.widgets.xviewer.util.internal.dialog,
+ org.eclipse.nebula.widgets.xviewer.util.internal.images
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
