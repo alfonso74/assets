@@ -2,8 +2,8 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
-	<classpathentry exported="true" kind="lib" path="org.eclipse.nebula.widgets.calendarcombo_1.0.0.201305101602.jar"/>
-	<classpathentry exported="true" kind="lib" path="org.eclipse.nebula.widgets.pshelf_1.0.0.201305101602.jar"/>
-	<classpathentry exported="true" kind="lib" path="org.eclipse.nebula.widgets.xviewer_0.9.9.201305101602.jar"/>
+	<classpathentry exported="true" kind="lib" path="org.eclipse.nebula.widgets.calendarcombo_1.0.0.201305101602.jar" sourcepath="org.eclipse.nebula.widgets.calendarcombo.source_1.0.0.201305101602.jar"/>
+	<classpathentry exported="true" kind="lib" path="org.eclipse.nebula.widgets.pshelf_1.0.0.201305101602.jar" sourcepath="org.eclipse.nebula.widgets.pshelf.source_1.0.0.201305101602.jar"/>
+	<classpathentry exported="true" kind="lib" path="org.eclipse.nebula.widgets.xviewer_0.9.9.201305101602.jar" sourcepath="org.eclipse.nebula.widgets.xviewer.source_0.9.9.201305101602.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
