@@ -38,6 +38,7 @@ import org.osgi.framework.Bundle;
 import rcp.assets.dto.FacturaRetainerParams;
 import rcp.assets.model.TipoFactura;
 import rcp.assets.services.HibernateUtil;
+import rcp.assets.services.JdbcPathService;
 
 
 public class VerFacturasController {
@@ -117,6 +118,7 @@ public class VerFacturasController {
 		//add to the classpath-Set Parent Classloader		
 		//config.getAppContext().put(EngineConstants.APPCONTEXT_CLASSLOADER_KEY, this.getClass().getClassLoader());
 		//config.getAppContext().put(EngineConstants.WEBAPP_CLASSPATH_KEY, "c:/jars/mjo.jar");
+		config.getAppContext().put("OdaJDBCDriverClassPath", JdbcPathService.INSTANCE.getMySqlJdbcDriverPath());
 		IReportEngineFactory factory = (IReportEngineFactory) org.eclipse.birt.core.framework.Platform
 				.createFactoryObject( IReportEngineFactory.EXTENSION_REPORT_ENGINE_FACTORY );
 		IReportEngine engine = factory.createReportEngine( config );
