@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Xls
+Bundle-Name: Xls BIRT Emitter (Assets)
 Bundle-SymbolicName: org.eclipse.birt.report.engine.emitter.nativexls;singleton:=true
 Bundle-Version: 1.0.0.201110122114
 Export-Package: org.eclipse.birt.report.engine.emitter.xls,
