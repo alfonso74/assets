@@ -3,8 +3,6 @@ package rcp.assets.facturacion;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
 
-import rcp.assets.views.NavigationView;
-import rcp.assets.views.Vista00;
 
 public class Perspective implements IPerspectiveFactory {
 

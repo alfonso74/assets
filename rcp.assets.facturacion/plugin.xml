@@ -64,22 +64,6 @@
    <extension
          point="org.eclipse.ui.views">
       <view
-            class="rcp.assets.views.Menu01"
-            id="rcp.assets.views.Menu01"
-            name="Vista para Menu01">
-      </view>
-      <view
-            class="rcp.assets.views.Vista00"
-            id="rcp.assets.views.Vista00"
-            name="Vista de forms">
-      </view>
-      <view
-            class="rcp.assets.views.NavigationView"
-            id="rcp.assets.views.NavigationView"
-            name="Menu principal"
-            restorable="true">
-      </view>
-      <view
             class="rcp.assets.views.NavigationView2"
             id="rcp.assets.views.NavigationView2"
             name="Menú principal (v2)"
