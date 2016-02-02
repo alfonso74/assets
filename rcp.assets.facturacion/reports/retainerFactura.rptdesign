@@ -1460,7 +1460,7 @@ where f.idFactura = ?]]></xml-property>
 } else {&#13;
 	mes = dataSetRow["DESC_INGLES"];&#13;
 };&#13;
-"Servicios de Contabilidad     ( " + mes + " " + row._outer["PERIODO_YY"] + " )"</expression>
+"Servicios de back office     ( " + mes + " " + row._outer["PERIODO_YY"] + " )"</expression>
                                 <property name="dataType">string</property>
                                 <property name="allowExport">true</property>
                             </structure>

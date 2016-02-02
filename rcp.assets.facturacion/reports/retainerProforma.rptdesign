@@ -1068,7 +1068,7 @@ where idMes = ?]]></xml-property>
 } else {&#13;
 	mes = row["DESC_INGLES"];&#13;
 };&#13;
-"Servicios de Contabilidad     ( " + mes + " " + params["yyyy"].value + " )"</expression>
+"Servicios de back office     ( " + mes + " " + params["yyyy"].value + " )"</expression>
                                 <property name="dataType">string</property>
                                 <property name="allowExport">true</property>
                             </structure>
