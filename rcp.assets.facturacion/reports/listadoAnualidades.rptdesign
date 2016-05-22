@@ -5,6 +5,22 @@
     <property name="iconFile">/templates/blank_report.gif</property>
     <property name="bidiLayoutOrientation">ltr</property>
     <property name="imageDPI">96</property>
+    <parameters>
+        <scalar-parameter name="filtros" id="135">
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">Todos</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
     <data-sources>
         <script-data-source name="expedientes" id="7"/>
     </data-sources>
@@ -337,7 +353,7 @@ return false;]]></method>
             <property name="pageBreakInterval">0</property>
             <column id="61"/>
             <column id="62">
-                <property name="width">200px</property>
+                <property name="width">250px</property>
             </column>
             <column id="100"/>
             <column id="104"/>
@@ -349,6 +365,35 @@ return false;]]></method>
             <column id="70"/>
             <column id="74"/>
             <header>
+                <row id="123">
+                    <cell id="124">
+                        <label id="137">
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Filtros:</text-property>
+                        </label>
+                    </cell>
+                    <cell id="125">
+                        <property name="colSpan">4</property>
+                        <property name="rowSpan">1</property>
+                        <data id="136">
+                            <property name="textAlign">left</property>
+                            <list-property name="boundDataColumns">
+                                <structure>
+                                    <property name="name">filtros</property>
+                                    <expression name="expression" type="javascript">params["filtros"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                            </list-property>
+                            <property name="resultSetColumn">filtros</property>
+                        </data>
+                    </cell>
+                    <cell id="129"/>
+                    <cell id="130"/>
+                    <cell id="131"/>
+                    <cell id="132"/>
+                    <cell id="133"/>
+                    <cell id="134"/>
+                </row>
                 <row id="52">
                     <cell id="53">
                         <label id="63">
@@ -377,7 +422,7 @@ return false;]]></method>
                     </cell>
                     <cell id="93">
                         <label id="115">
-                            <text-property name="text">Retransmisión</text-property>
+                            <text-property name="text">Retrans.</text-property>
                         </label>
                     </cell>
                     <cell id="89">

@@ -89,6 +89,8 @@ public class FacturarAnualidadesEditor extends AbstractEditor {
 	private ComboData cdNotificacion;
 
 	private Label lblRegistros;
+	
+	private String filtrosListadoAnualidades = "Filtro no especificado (muestra todos los registros)";
 
 
 	public FacturarAnualidadesEditor() {
@@ -176,11 +178,13 @@ public class FacturarAnualidadesEditor extends AbstractEditor {
 				} else {
 					if (!txtNoExpediente.getText().equals("")) {
 						String noExp = txtNoExpediente.getText().trim();
+						filtrosListadoAnualidades = "Expediente " + noExp;
 						viewer.setInput(controller.buscarExpediente(noExp));
 						lblRegistros.setText(viewer.getTable().getItemCount() + " registros");
 					} else {
 						PeriodoAnualidad periodo = (PeriodoAnualidad) cdPeriodo.getObjectByIndex(comboPeriodo.getSelectionIndex());
 						boolean flagTasa = comboTasa.getText().equals("Con tasa") ? true : false;
+						filtrosListadoAnualidades = comboPeriodo.getText() + " - " + comboYY.getText() + ", Compañía " + comboCia.getText() + ", " + comboTasa.getText();
 						viewer.setInput(controller.buscarExpedientes(periodo, comboCia.getText(), flagTasa));
 						lblRegistros.setText(viewer.getTable().getItemCount() + " registros");
 					}
@@ -235,7 +239,8 @@ public class FacturarAnualidadesEditor extends AbstractEditor {
 		mghprlnkInforme.setImage(ResourceManager.getPluginImage("rcp.assets.facturacion", "icons/excel_16.png"));
 		mghprlnkInforme.setBounds(0, 0, 102, 17);
 		formToolkit.paintBordersFor(mghprlnkInforme);
-		mghprlnkInforme.setText("Listado");
+		mghprlnkInforme.setText("Exportar Listado");
+		mghprlnkInforme.setToolTipText("Exporta el listado actual (con los filtros aplicados) a una hoja de excel");
 		mghprlnkInforme.addHyperlinkListener(new IHyperlinkListener() {
 			public void linkActivated(HyperlinkEvent e) {
 				exportarListadoAnualidadesAExcel();
@@ -446,7 +451,7 @@ public class FacturarAnualidadesEditor extends AbstractEditor {
 
 	
 	private void exportarListadoAnualidadesAExcel() {
-		abrirReporteExcel(new Browser(getSite().getShell(), SWT.None), (List<Expediente>) viewer.getInput());
+		abrirReporteExcel(new Browser(getSite().getShell(), SWT.None), viewer.getInput());
 	}
 
 	private Factura generarFacturaAnualidad(Expediente expediente) {
@@ -495,8 +500,9 @@ public class FacturarAnualidadesEditor extends AbstractEditor {
 	}
 	
 	
-	private void abrirReporteExcel(Browser browser, List<Expediente> listadoExpedientes) {
+	private void abrirReporteExcel(Browser browser, Object listadoExpedientes) {
 		VerFacturasController gfc = new VerFacturasController();
+		gfc.agregarParametro("filtros", filtrosListadoAnualidades);
 		gfc.agregarParametro("listadoExpedientes", listadoExpedientes);
 		gfc.generarDocumentoExcel(browser, "/reports/listadoAnualidades.rptdesign");
 	}

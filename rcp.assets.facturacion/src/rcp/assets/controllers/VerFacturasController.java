@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -119,12 +121,19 @@ public class VerFacturasController {
 		} else {
 			System.out.println("Parametros: " + parametros);
 			IReportEngine engine = inicializarEngine();
-			String rpt = getReportURL(rutaReporte);
-			RenderOption options = configurarRendererExcel2007(rpt);
-			String reporteFileName = ejecutarReporte(engine, options, rpt);
-
+			String rptTemplatePath = getReportURL(rutaReporte);
+			RenderOption options = configurarRendererExcel2007(rptTemplatePath);
+			
+			// agrega la fecha/hora de generación del reporte
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HHmm");
+			String generatedDateTxt = format.format(new Date());
+			String tmpReportName = options.getOutputFileName().replace(".xlsx", " " + generatedDateTxt + ".xlsx");
+			options.setOutputFileName(tmpReportName);
+			
+			String reporteFileName = ejecutarReporte(engine, options, rptTemplatePath);
+			
 			System.out.println("Archivo de salida: " + reporteFileName);
-
+			
 			browser.setUrl("file://" + reporteFileName);
 			engine.destroy();
 		}
@@ -209,13 +218,13 @@ public class VerFacturasController {
 	 * Gnenera un archivo de acuerdo al reporte y formato suministrados
 	 * @param engine Engine de BIRT
 	 * @param options renderer configurado para generar el archivo en un formato específico
-	 * @param rpt ruta del reporte de BIRT a usar como template
+	 * @param rptTemplatePath ruta del reporte de BIRT a usar como template
 	 * @return
 	 */
-	private String ejecutarReporte(IReportEngine engine, RenderOption options, String rpt) {
+	private String ejecutarReporte(IReportEngine engine, RenderOption options, String rptTemplatePath) {
 		// Pasamos los parámetros para el reporte y lo ejecutamos
 		try {
-			IReportRunnable design = engine.openReportDesign(rpt);
+			IReportRunnable design = engine.openReportDesign(rptTemplatePath);
 			IRunAndRenderTask task = engine.createRunAndRenderTask(design);
 			task.setParameterValue("connectionURL", HibernateUtil.getConnectionURL());
 			task.setParameterValues(parametros);
@@ -223,7 +232,7 @@ public class VerFacturasController {
 			task.run();
 			task.close();
 		} catch (EngineException e) {
-			MessageDialog.openError(shell, "Error en: " + this.getClass().getName(), "Error al generar el reporte: " + rpt + ".\n" +
+			MessageDialog.openError(shell, "Error en: " + this.getClass().getName(), "Error al generar el reporte: " + rptTemplatePath + ".\n" +
 					"Error: " + e.toString() + "\n\nStack trace: " + e.getStackTrace()[0] + "\n" + e.getStackTrace()[1]);
 			e.printStackTrace();
 		}
