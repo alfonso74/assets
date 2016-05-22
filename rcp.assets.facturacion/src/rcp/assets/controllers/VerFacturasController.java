@@ -100,7 +100,7 @@ public class VerFacturasController {
 			System.out.println("Parametros: " + parametros);
 			IReportEngine engine = inicializarEngine();
 			String rpt = getReportURL(rutaReporte);
-			RenderOption options = configurarRendererExcel(rpt);
+			RenderOption options = configurarRendererExcel2003(rpt);
 			String reporteFileName = ejecutarReporte(engine, options, rpt);
 			procesarFuentesExcel(reporteFileName, tipoFactura);
 
@@ -120,14 +120,11 @@ public class VerFacturasController {
 			System.out.println("Parametros: " + parametros);
 			IReportEngine engine = inicializarEngine();
 			String rpt = getReportURL(rutaReporte);
-			RenderOption options = configurarRendererExcel(rpt);
+			RenderOption options = configurarRendererExcel2007(rpt);
 			String reporteFileName = ejecutarReporte(engine, options, rpt);
-//			procesarFuentesExcel(reporteFileName, null);
 
 			System.out.println("Archivo de salida: " + reporteFileName);
 
-			//browser.setText(bos.toString("UTF-8"));
-			//browser.setUrl("file:///c:/proformaCaso.pdf");
 			browser.setUrl("file://" + reporteFileName);
 			engine.destroy();
 		}
@@ -172,19 +169,37 @@ public class VerFacturasController {
 	}
 
 	/**
-	 * Configura un renderer de excel para generar una hoja de cálculo basada en el reporte indicado
+	 * Configura un renderer de excel (versión 2003) para generar una hoja de cálculo basada 
+	 * en el reporte indicado
 	 * @param rpt Ruta del reporte usado como template
-	 * @return RenderOption configurado para excel
+	 * @return RenderOption configurado para excel 2003
 	 */
-	private RenderOption configurarRendererExcel(String rpt) {
+	private RenderOption configurarRendererExcel2003(String rpt) {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		String outputXLS = rpt.replaceFirst( ".rptdesign", ".xls" );
 		EXCELRenderOption options = new EXCELRenderOption();
 		options.setOutputStream(bos);
 		options.setOutputFormat("xls");
 		options.setOutputFileName(outputXLS);
-//		options.setOption( IExcelRenderOption.OFFICE_VERSION, "office2007");
 		options.setOption( IExcelRenderOption.OFFICE_VERSION, "office2003"); 
+		options.setOption(IRenderOption.EMITTER_ID,"org.eclipse.birt.report.engine.emitter.nativexls");
+		System.out.println("Ruta del archivo a generar: " + outputXLS);
+		return options;
+	}
+	
+	/**
+	 * Configura un renderer de excel (versión 2007) para generar una hoja de cálculo basada 
+	 * en el reporte indicado
+	 * @param rpt Ruta del reporte usado como template
+	 * @return RenderOption configurado para excel 2007
+	 */
+	private RenderOption configurarRendererExcel2007(String rpt) {
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		String outputXLS = rpt.replaceFirst( ".rptdesign", ".xlsx" );
+		EXCELRenderOption options = new EXCELRenderOption();
+		options.setOutputStream(bos);
+		options.setOutputFileName(outputXLS);
+		options.setOption( IExcelRenderOption.OFFICE_VERSION, "office2007"); 
 		options.setOption(IRenderOption.EMITTER_ID,"org.eclipse.birt.report.engine.emitter.nativexls");
 		System.out.println("Ruta del archivo a generar: " + outputXLS);
 		return options;

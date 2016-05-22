@@ -23,11 +23,46 @@
                 </structure>
                 <structure>
                     <property name="position">3</property>
-                    <property name="name">tasa</property>
+                    <property name="name">agente</property>
                     <property name="dataType">decimal</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
+                    <property name="name">director</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">libros</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">retransmision</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">servFid</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">servFirma</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">otros</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">tasa</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
                     <property name="name">totalAnualidad</property>
                     <property name="dataType">decimal</property>
                 </structure>
@@ -40,6 +75,34 @@
                 <structure>
                     <property name="columnName">nombre</property>
                     <text-property name="displayName">Nombre del expediente</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">agente</property>
+                    <text-property name="displayName">Agente</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">director</property>
+                    <text-property name="displayName">Director</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">libros</property>
+                    <text-property name="displayName">Libros</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">retransmision</property>
+                    <text-property name="displayName">Retransmisión</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">servFid</property>
+                    <text-property name="displayName">Serv. Fid.</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">servFirma</property>
+                    <text-property name="displayName">Serv. Firma</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">otros</property>
+                    <text-property name="displayName">Otros</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">tasa</property>
@@ -64,11 +127,46 @@
                     </structure>
                     <structure>
                         <property name="position">3</property>
-                        <property name="name">tasa</property>
+                        <property name="name">agente</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">4</property>
+                        <property name="name">director</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">libros</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">retransmision</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">servFid</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">servFirma</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">otros</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">tasa</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
                         <property name="name">totalAnualidad</property>
                         <property name="dataType">decimal</property>
                     </structure>
@@ -84,8 +182,27 @@ count = 0;]]></method>
             <method name="fetch"><![CDATA[if (anualidades != null &amp;&amp; count < anualidades.size()) {
 	row["noExp"] = anualidades.get(count).getNoExpediente();
 	row["nombre"] = anualidades.get(count).getNombre();
-	row["tasa"] = anualidades.get(count).getCargoExpediente().getCargosAnuales().getTasa();
-	row["totalAnualidad"] = anualidades.get(count).getCargoExpediente().getTotalCargosAnuales();
+	if (anualidades.get(count).getCargoExpediente() != null) {
+		row["agente"] = anualidades.get(count).getCargoExpediente().getCargosAnuales().getAgenteResidente();
+		row["director"] = anualidades.get(count).getCargoExpediente().getCargosAnuales().getDirectores();
+		row["libros"] = anualidades.get(count).getCargoExpediente().getCargosAnuales().getCustodiaLibros();
+		row["retransmision"] = anualidades.get(count).getCargoExpediente().getCargosAnuales().getRetransmision();
+		row["servFid"] = anualidades.get(count).getCargoExpediente().getCargosAnuales().getServFiduciarios();
+		row["servFirma"] = anualidades.get(count).getCargoExpediente().getCargosAnuales().getServFirmas();
+		row["otros"] = anualidades.get(count).getCargoExpediente().getCargosAnuales().getOtros();
+		row["tasa"] = anualidades.get(count).getCargoExpediente().getCargosAnuales().getTasa();
+		row["totalAnualidad"] = anualidades.get(count).getCargoExpediente().getTotalCargosAnuales();
+	} else {
+		row["agente"] = 1.01;
+		row["director"] = 1.02;
+		row["libros"] = 1.03;
+		row["retransmision"] = 1.04;
+		row["servFid"] = 1.05;
+		row["servFirma"] = 1.06;
+		row["otros"] = 1.07;
+		row["tasa"] = 144;
+		row["totalAnualidad"] = 107.09;
+	}
 	count++;
 	return true;
 }
@@ -125,10 +242,18 @@ return false;]]></method>
             <property name="borderTopStyle">solid</property>
             <property name="borderTopWidth">1pt</property>
         </style>
+        <style name="normal" id="79"/>
+        <style name="normal-number" id="80">
+            <structure name="numberFormat">
+                <property name="category">Fixed</property>
+                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+            </structure>
+        </style>
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
             <property name="type">us-letter</property>
+            <property name="orientation">landscape</property>
             <page-footer>
                 <text id="3">
                     <property name="contentType">html</property>
@@ -165,11 +290,62 @@ return false;]]></method>
                     <expression name="expression" type="javascript">dataSetRow["totalAnualidad"]</expression>
                     <property name="dataType">decimal</property>
                 </structure>
+                <structure>
+                    <property name="name">agente</property>
+                    <text-property name="displayName">Agente</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["agente"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">director</property>
+                    <text-property name="displayName">Director</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["director"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">libros</property>
+                    <text-property name="displayName">Libros</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["libros"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">retransmision</property>
+                    <text-property name="displayName">Retransmisión</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["retransmision"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">servFid</property>
+                    <text-property name="displayName">Serv. Fid.</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["servFid"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">servFirma</property>
+                    <text-property name="displayName">Serv. Firma</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["servFirma"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">otros</property>
+                    <text-property name="displayName">Otros</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["otros"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
             </list-property>
             <property name="repeatHeader">false</property>
             <property name="pageBreakInterval">0</property>
             <column id="61"/>
-            <column id="62"/>
+            <column id="62">
+                <property name="width">200px</property>
+            </column>
+            <column id="100"/>
+            <column id="104"/>
+            <column id="108"/>
+            <column id="96"/>
+            <column id="92"/>
+            <column id="88"/>
+            <column id="84"/>
             <column id="70"/>
             <column id="74"/>
             <header>
@@ -182,6 +358,41 @@ return false;]]></method>
                     <cell id="54">
                         <label id="65">
                             <text-property name="text">Nombre del expediente</text-property>
+                        </label>
+                    </cell>
+                    <cell id="97">
+                        <label id="109">
+                            <text-property name="text">Agente</text-property>
+                        </label>
+                    </cell>
+                    <cell id="101">
+                        <label id="111">
+                            <text-property name="text">Director</text-property>
+                        </label>
+                    </cell>
+                    <cell id="105">
+                        <label id="113">
+                            <text-property name="text">Libros</text-property>
+                        </label>
+                    </cell>
+                    <cell id="93">
+                        <label id="115">
+                            <text-property name="text">Retransmisión</text-property>
+                        </label>
+                    </cell>
+                    <cell id="89">
+                        <label id="117">
+                            <text-property name="text">Serv. Fid.</text-property>
+                        </label>
+                    </cell>
+                    <cell id="85">
+                        <label id="119">
+                            <text-property name="text">Serv. Firma</text-property>
+                        </label>
+                    </cell>
+                    <cell id="81">
+                        <label id="121">
+                            <text-property name="text">Otros</text-property>
                         </label>
                     </cell>
                     <cell id="67">
@@ -198,30 +409,80 @@ return false;]]></method>
             </header>
             <detail>
                 <row id="55">
+                    <property name="suppressDuplicates">false</property>
+                    <property name="style">normal</property>
+                    <property name="fontFamily">"Arial"</property>
                     <cell id="56">
                         <data id="64">
+                            <property name="style">normal</property>
                             <property name="resultSetColumn">noExp</property>
                         </data>
                     </cell>
                     <cell id="57">
                         <data id="66">
+                            <property name="style">normal</property>
                             <property name="resultSetColumn">nombre</property>
+                        </data>
+                    </cell>
+                    <cell id="98">
+                        <data id="110">
+                            <property name="style">normal-number</property>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">agente</property>
+                        </data>
+                    </cell>
+                    <cell id="102">
+                        <data id="112">
+                            <property name="style">normal-number</property>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">director</property>
+                        </data>
+                    </cell>
+                    <cell id="106">
+                        <data id="114">
+                            <property name="style">normal-number</property>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">libros</property>
+                        </data>
+                    </cell>
+                    <cell id="94">
+                        <data id="116">
+                            <property name="style">normal-number</property>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">retransmision</property>
+                        </data>
+                    </cell>
+                    <cell id="90">
+                        <data id="118">
+                            <property name="style">normal-number</property>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">servFid</property>
+                        </data>
+                    </cell>
+                    <cell id="86">
+                        <data id="120">
+                            <property name="style">normal-number</property>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">servFirma</property>
+                        </data>
+                    </cell>
+                    <cell id="82">
+                        <data id="122">
+                            <property name="style">normal-number</property>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">otros</property>
                         </data>
                     </cell>
                     <cell id="68">
                         <data id="76">
-                            <structure name="numberFormat">
-                                <property name="category">Unformatted</property>
-                            </structure>
+                            <property name="style">normal-number</property>
                             <property name="textAlign">right</property>
                             <property name="resultSetColumn">tasa</property>
                         </data>
                     </cell>
                     <cell id="72">
                         <data id="78">
-                            <structure name="numberFormat">
-                                <property name="category">Unformatted</property>
-                            </structure>
+                            <property name="style">normal-number</property>
                             <property name="textAlign">right</property>
                             <property name="resultSetColumn">totalAnualidad</property>
                         </data>
@@ -232,6 +493,13 @@ return false;]]></method>
                 <row id="58">
                     <cell id="59"/>
                     <cell id="60"/>
+                    <cell id="99"/>
+                    <cell id="103"/>
+                    <cell id="107"/>
+                    <cell id="95"/>
+                    <cell id="91"/>
+                    <cell id="87"/>
+                    <cell id="83"/>
                     <cell id="69"/>
                     <cell id="73"/>
                 </row>
