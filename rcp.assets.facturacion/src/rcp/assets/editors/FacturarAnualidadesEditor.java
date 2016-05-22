@@ -223,12 +223,28 @@ public class FacturarAnualidadesEditor extends AbstractEditor {
 		Composite compositeBotones = formToolkit.createComposite(scrldfrmMain.getBody(), SWT.NONE);
 		compositeBotones.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		formToolkit.paintBordersFor(compositeBotones);
-		GridLayout gl_compositeBotones = new GridLayout(4, false);
+		GridLayout gl_compositeBotones = new GridLayout(5, false);
 		gl_compositeBotones.marginHeight = 0;
 		compositeBotones.setLayout(gl_compositeBotones);
 
 		lblRegistros = formToolkit.createLabel(compositeBotones, "Registros", SWT.NONE);
 		lblRegistros.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		
+		ImageHyperlink mghprlnkInforme = formToolkit.createImageHyperlink(compositeBotones, SWT.NONE);
+		mghprlnkInforme.setUnderlined(false);
+		mghprlnkInforme.setImage(ResourceManager.getPluginImage("rcp.assets.facturacion", "icons/excel_16.png"));
+		mghprlnkInforme.setBounds(0, 0, 102, 17);
+		formToolkit.paintBordersFor(mghprlnkInforme);
+		mghprlnkInforme.setText("Listado");
+		mghprlnkInforme.addHyperlinkListener(new IHyperlinkListener() {
+			public void linkActivated(HyperlinkEvent e) {
+				exportarListadoAnualidadesAExcel();
+			}
+			public void linkEntered(HyperlinkEvent e) {
+			}
+			public void linkExited(HyperlinkEvent e) {
+			}
+		});
 
 		ImageHyperlink mghprlnkProforma = formToolkit.createImageHyperlink(compositeBotones, SWT.NONE);
 		mghprlnkProforma.setUnderlined(false);
@@ -428,6 +444,10 @@ public class FacturarAnualidadesEditor extends AbstractEditor {
 
 	}
 
+	
+	private void exportarListadoAnualidadesAExcel() {
+		abrirReporteExcel(new Browser(getSite().getShell(), SWT.None), (List<Expediente>) viewer.getInput());
+	}
 
 	private Factura generarFacturaAnualidad(Expediente expediente) {
 		String idiomaCodigo = "1";  // idioma español
@@ -472,6 +492,13 @@ public class FacturarAnualidadesEditor extends AbstractEditor {
 		gfc.agregarParametro("idFactura", Integer.valueOf(factura.getIdFactura().toString()));
 		gfc.agregarParametro("idioma", factura.getIdioma());
 		gfc.generarFacturaExcel(browser, TipoFactura.ANUALIDAD);
+	}
+	
+	
+	private void abrirReporteExcel(Browser browser, List<Expediente> listadoExpedientes) {
+		VerFacturasController gfc = new VerFacturasController();
+		gfc.agregarParametro("listadoExpedientes", listadoExpedientes);
+		gfc.generarDocumentoExcel(browser, "/reports/listadoAnualidades.rptdesign");
 	}
 
 

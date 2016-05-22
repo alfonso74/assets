@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 3.7.2.v20120213 Build &lt;3.7.2.v20120214-1408></property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <data-sources>
+        <script-data-source name="expedientes" id="7"/>
+    </data-sources>
+    <data-sets>
+        <script-data-set name="AnualidadesDataSet" id="8">
+            <list-property name="resultSetHints">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">noExp</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">nombre</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">tasa</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">totalAnualidad</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">noExp</property>
+                    <text-property name="displayName">No Exp</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">nombre</property>
+                    <text-property name="displayName">Nombre del expediente</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">tasa</property>
+                    <text-property name="displayName">Tasa</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">totalAnualidad</property>
+                    <text-property name="displayName">Anualidad</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">noExp</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">nombre</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">tasa</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">totalAnualidad</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">expedientes</property>
+            <method name="open"><![CDATA[Packages.java.lang.System.out.println("---------- Exportando anualidades a excel -------------");
+
+anualidades = reportContext.getParameterValue("listadoExpedientes");
+Packages.java.lang.System.out.println("Anualidades: " + anualidades);
+
+count = 0;]]></method>
+            <method name="fetch"><![CDATA[if (anualidades != null &amp;&amp; count < anualidades.size()) {
+	row["noExp"] = anualidades.get(count).getNoExpediente();
+	row["nombre"] = anualidades.get(count).getNombre();
+	row["tasa"] = anualidades.get(count).getCargoExpediente().getCargosAnuales().getTasa();
+	row["totalAnualidad"] = anualidades.get(count).getCargoExpediente().getTotalCargosAnuales();
+	count++;
+	return true;
+}
+return false;]]></method>
+        </script-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <property name="type">us-letter</property>
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <table id="51">
+            <property name="dataSet">AnualidadesDataSet</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">noExp</property>
+                    <text-property name="displayName">No Exp</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["noExp"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">nombre</property>
+                    <text-property name="displayName">Nombre del expediente</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["nombre"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">tasa</property>
+                    <text-property name="displayName">Tasa</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["tasa"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">totalAnualidad</property>
+                    <text-property name="displayName">Anualidad</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["totalAnualidad"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <property name="repeatHeader">false</property>
+            <property name="pageBreakInterval">0</property>
+            <column id="61"/>
+            <column id="62"/>
+            <column id="70"/>
+            <column id="74"/>
+            <header>
+                <row id="52">
+                    <cell id="53">
+                        <label id="63">
+                            <text-property name="text">No Exp</text-property>
+                        </label>
+                    </cell>
+                    <cell id="54">
+                        <label id="65">
+                            <text-property name="text">Nombre del expediente</text-property>
+                        </label>
+                    </cell>
+                    <cell id="67">
+                        <label id="75">
+                            <text-property name="text">Tasa</text-property>
+                        </label>
+                    </cell>
+                    <cell id="71">
+                        <label id="77">
+                            <text-property name="text">Anualidad</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="55">
+                    <cell id="56">
+                        <data id="64">
+                            <property name="resultSetColumn">noExp</property>
+                        </data>
+                    </cell>
+                    <cell id="57">
+                        <data id="66">
+                            <property name="resultSetColumn">nombre</property>
+                        </data>
+                    </cell>
+                    <cell id="68">
+                        <data id="76">
+                            <structure name="numberFormat">
+                                <property name="category">Unformatted</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">tasa</property>
+                        </data>
+                    </cell>
+                    <cell id="72">
+                        <data id="78">
+                            <structure name="numberFormat">
+                                <property name="category">Unformatted</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">totalAnualidad</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="58">
+                    <cell id="59"/>
+                    <cell id="60"/>
+                    <cell id="69"/>
+                    <cell id="73"/>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>

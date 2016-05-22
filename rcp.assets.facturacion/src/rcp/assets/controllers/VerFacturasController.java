@@ -112,6 +112,26 @@ public class VerFacturasController {
 			engine.destroy();
 		}
 	}
+	
+	public void generarDocumentoExcel(Browser browser, String rutaReporte) {
+		if (rutaReporte == null) {
+			MessageDialog.openError(shell, "Generar factura", "La ruta del template del documento es incorrecta: " + rutaReporte + ".");
+		} else {
+			System.out.println("Parametros: " + parametros);
+			IReportEngine engine = inicializarEngine();
+			String rpt = getReportURL(rutaReporte);
+			RenderOption options = configurarRendererExcel(rpt);
+			String reporteFileName = ejecutarReporte(engine, options, rpt);
+//			procesarFuentesExcel(reporteFileName, null);
+
+			System.out.println("Archivo de salida: " + reporteFileName);
+
+			//browser.setText(bos.toString("UTF-8"));
+			//browser.setUrl("file:///c:/proformaCaso.pdf");
+			browser.setUrl("file://" + reporteFileName);
+			engine.destroy();
+		}
+	}
 
 	private IReportEngine inicializarEngine() {
 		EngineConfig config = new EngineConfig();
@@ -163,7 +183,7 @@ public class VerFacturasController {
 		options.setOutputStream(bos);
 		options.setOutputFormat("xls");
 		options.setOutputFileName(outputXLS);
-		//options.setOption( IExcelRenderOption.OFFICE_VERSION, "office2007");
+//		options.setOption( IExcelRenderOption.OFFICE_VERSION, "office2007");
 		options.setOption( IExcelRenderOption.OFFICE_VERSION, "office2003"); 
 		options.setOption(IRenderOption.EMITTER_ID,"org.eclipse.birt.report.engine.emitter.nativexls");
 		System.out.println("Ruta del archivo a generar: " + outputXLS);

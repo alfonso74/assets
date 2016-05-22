@@ -49,10 +49,10 @@ public class ExpedientesController extends AbstractController<Expediente> {
 					expediente.getCargoExpediente().getResponsable().getExcentoImpuesto().equals("N")) {
 				impuesto = expediente.getCargoExpediente().getRetainer().getTotalRetainerConImpuesto(porcImpuesto);
 			} else {
-				System.out.println("Cliente excento o null: " + expediente.getCargoExpediente().getResponsable());
+				System.out.println("Cliente exento o null: " + expediente.getCargoExpediente().getResponsable());
 			}
 		} else {
-			System.out.println("Compañía excenta: " + expediente.getNoCia());
+			System.out.println("Compañía exenta: " + expediente.getNoCia());
 		}
 		return impuesto;
 	}
