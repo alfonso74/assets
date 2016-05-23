@@ -19,6 +19,8 @@ import org.apache.poi.hssf.usermodel.HSSFPrintSetup;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 import org.eclipse.birt.report.engine.api.EXCELRenderOption;
 import org.eclipse.birt.report.engine.api.EngineConfig;
 import org.eclipse.birt.report.engine.api.EngineException;
@@ -323,11 +325,11 @@ public class VerFacturasController {
 
 			float heightInPoints = 0;
 			int lastRow = 0;
-			Iterator<HSSFRow> rows = sheet.rowIterator();
+			Iterator<Row> rows = sheet.rowIterator();
 			while (rows.hasNext()) {
 				HSSFRow row = (HSSFRow) rows.next();
 				System.out.print("ROW " + row.getRowNum() + ": ");
-				Iterator<HSSFCell> cells = row.cellIterator();
+				Iterator<Cell> cells = row.cellIterator();
 				while (cells.hasNext()) {
 					HSSFCell cell = (HSSFCell) cells.next();
 					if (cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC) {
@@ -381,13 +383,13 @@ public class VerFacturasController {
 
 	private void ajustarEspacioNotificacionesAnualidades(HSSFSheet sheet,
 			float heightInPoints, int lastRow) {
-		Iterator<HSSFRow> rows;
+		Iterator<Row> rows;
 		// ajuste de penúltimo row para bajar la posición del cuadro de notificaciones.
 		float maxPoints = 710f * 3f / 4f;   // 740 * 3 / 4 ==>  555
 		System.out.println("Max points: " + maxPoints + ", Last row: " + lastRow);
 		if (heightInPoints < maxPoints) {
 			System.out.println("Evaluando ajuste...");
-			HSSFRow variableRow = null;
+			Row variableRow = null;
 			rows = sheet.rowIterator();
 			int n = 0;
 			while (rows.hasNext()) {

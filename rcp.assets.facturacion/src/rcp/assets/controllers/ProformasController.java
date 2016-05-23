@@ -16,6 +16,8 @@ import org.apache.poi.hssf.usermodel.HSSFPrintSetup;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 import org.eclipse.birt.report.engine.api.EXCELRenderOption;
 import org.eclipse.birt.report.engine.api.EngineConfig;
 import org.eclipse.birt.report.engine.api.EngineConstants;
@@ -233,11 +235,11 @@ public class ProformasController {
 			font.setFontHeightInPoints((short)10);
 			font.setFontName("Courier");
 
-			Iterator<HSSFRow> rows = sheet.rowIterator();
+			Iterator<Row> rows = sheet.rowIterator();
 			while (rows.hasNext()) {
 				HSSFRow row = (HSSFRow) rows.next();
 				System.out.print("ROW " + row.getRowNum() + ": ");
-				Iterator<HSSFCell> cells = row.cellIterator();
+				Iterator<Cell> cells = row.cellIterator();
 				while (cells.hasNext()) {
 					HSSFCell cell = (HSSFCell) cells.next();
 					if (cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC) {
