@@ -257,16 +257,10 @@
             allPopups="false"
             locationURI="toolbar:rcp.assets.views.seguimiento.FacturasView">
          <command
-               commandId="rcp.assets.commands.FacturasPorFecha"
+               commandId="generacionExcelFacturas"
                icon="icons/excel_16.png"
-               label="Generar informe de facturas"
-               style="push">
-         </command>
-         <command
-               commandId="rcp.assets.commands.ImprimirFacturaHandler"
-               icon="icons/excel_16.png"
-               label="Imprimir factura"
-               style="push">
+               label="Genera informes/facturas en excel"
+               style="pulldown">
          </command>
          <command
                commandId="rcp.assets.commands.AnularFacturaHandler"
@@ -295,6 +289,20 @@
                icon="icons/refresh_16.png"
                label="Actualizar"
                style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:generacionExcelFacturas">
+         <command
+               commandId="rcp.assets.commands.ImprimirFacturaHandler"
+               label="Imprimir factura"
+               style="pulldown">
+         </command>
+         <command
+               commandId="rcp.assets.commands.FacturasPorFecha"
+               label="Informe de facturas (SAP)"
+               style="pulldown">
          </command>
       </menuContribution>
    </extension>
@@ -456,6 +464,11 @@
             defaultHandler="rcp.assets.commands.ExportarPeachTree"
             id="rcp.assets.commands.ExportarPeachtreeHandler"
             name="Exportar a PeachTree">
+      </command>
+      <command
+            defaultHandler="rcp.assets.commands.ExitHandler"
+            id="generacionExcelFacturas"
+            name="generacionExcelFacturas">
       </command>
    </extension>
    <extension
