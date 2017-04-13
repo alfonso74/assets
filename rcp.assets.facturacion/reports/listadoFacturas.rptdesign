@@ -136,26 +136,31 @@
                     </structure>
                     <structure>
                         <property name="position">2</property>
-                        <property name="name">NO_FACTURA</property>
+                        <property name="name">NOMBRE</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">3</property>
-                        <property name="name">TIPO</property>
+                        <property name="name">NO_FACTURA</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">4</property>
+                        <property name="name">TIPO</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
                         <property name="name">CREADO</property>
                         <property name="dataType">date-time</property>
                     </structure>
                     <structure>
-                        <property name="position">5</property>
+                        <property name="position">6</property>
                         <property name="name">REF_SECUENCIA</property>
                         <property name="dataType">integer</property>
                     </structure>
                     <structure>
-                        <property name="position">6</property>
+                        <property name="position">7</property>
                         <property name="name">ref_sap</property>
                         <property name="dataType">integer</property>
                     </structure>
@@ -186,36 +191,42 @@ this.queryText = this.queryText + " order by creado"]]></method>
                 </structure>
                 <structure>
                     <property name="position">2</property>
+                    <property name="name">NOMBRE</property>
+                    <property name="nativeName">NOMBRE</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
                     <property name="name">NO_FACTURA</property>
                     <property name="nativeName">NO_FACTURA</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="position">3</property>
+                    <property name="position">4</property>
                     <property name="name">TIPO</property>
                     <property name="nativeName">TIPO</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="position">4</property>
+                    <property name="position">5</property>
                     <property name="name">CREADO</property>
                     <property name="nativeName">CREADO</property>
                     <property name="dataType">date-time</property>
                 </structure>
                 <structure>
-                    <property name="position">5</property>
+                    <property name="position">6</property>
                     <property name="name">REF_SECUENCIA</property>
                     <property name="nativeName">REF_SECUENCIA</property>
                     <property name="dataType">integer</property>
                 </structure>
                 <structure>
-                    <property name="position">6</property>
+                    <property name="position">7</property>
                     <property name="name">ref_sap</property>
                     <property name="nativeName">ref_sap</property>
                     <property name="dataType">integer</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[select f.no_expediente, f.no_factura, 
+            <xml-property name="queryText"><![CDATA[select f.no_expediente, e.nombre, f.no_factura, 
 f.tipo, f.creado, f.ref_secuencia, 
 case f.tipo 
   when 'CA' then f.ref_secuencia
@@ -311,10 +322,17 @@ and date(f.creado) >= ? and date(f.creado) <= ?]]></xml-property>
                     <expression name="expression" type="javascript">dataSetRow["ref_sap"]</expression>
                     <property name="dataType">integer</property>
                 </structure>
+                <structure>
+                    <property name="name">NOMBRE</property>
+                    <text-property name="displayName">NOMBRE</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["NOMBRE"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <property name="repeatHeader">false</property>
             <property name="pageBreakInterval">0</property>
             <column id="41"/>
+            <column id="51"/>
             <column id="42"/>
             <column id="43"/>
             <column id="44"/>
@@ -323,6 +341,11 @@ and date(f.creado) >= ? and date(f.creado) <= ?]]></xml-property>
                 <row id="13">
                     <cell id="14">
                         <label id="15">
+                            <text-property name="text">No Expediente</text-property>
+                        </label>
+                    </cell>
+                    <cell id="48">
+                        <label id="52">
                             <text-property name="text">Expediente</text-property>
                         </label>
                     </cell>
@@ -355,6 +378,11 @@ and date(f.creado) >= ? and date(f.creado) <= ?]]></xml-property>
                             <property name="resultSetColumn">NO_EXPEDIENTE</property>
                         </data>
                     </cell>
+                    <cell id="49">
+                        <data id="53">
+                            <property name="resultSetColumn">NOMBRE</property>
+                        </data>
+                    </cell>
                     <cell id="27">
                         <data id="28">
                             <property name="resultSetColumn">NO_FACTURA</property>
@@ -381,6 +409,7 @@ and date(f.creado) >= ? and date(f.creado) <= ?]]></xml-property>
             <footer>
                 <row id="35">
                     <cell id="36"/>
+                    <cell id="50"/>
                     <cell id="37"/>
                     <cell id="38"/>
                     <cell id="39"/>
