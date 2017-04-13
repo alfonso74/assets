@@ -3,18 +3,6 @@
     <property name="createdBy">Eclipse BIRT Designer Version 3.7.2.v20120213 Build &lt;3.7.2.v20120214-1408></property>
     <list-property name="propertyBindings">
         <structure>
-            <property name="name">queryText</property>
-            <property name="id">10</property>
-        </structure>
-        <structure>
-            <property name="name">queryTimeOut</property>
-            <property name="id">10</property>
-        </structure>
-        <structure>
-            <property name="name">rowFetchSize</property>
-            <property name="id">10</property>
-        </structure>
-        <structure>
             <property name="name">odaURL</property>
             <property name="id">7</property>
             <expression name="value" type="javascript">params["connectionURL"].value</expression>
@@ -166,6 +154,11 @@
                         <property name="name">REF_SECUENCIA</property>
                         <property name="dataType">integer</property>
                     </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">ref_sap</property>
+                        <property name="dataType">integer</property>
+                    </structure>
                 </list-property>
             </structure>
             <method name="beforeOpen"><![CDATA[var noTipos = params["tipoFactura"].value.length;
@@ -215,10 +208,21 @@ this.queryText = this.queryText + " order by creado"]]></method>
                     <property name="nativeName">REF_SECUENCIA</property>
                     <property name="dataType">integer</property>
                 </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">ref_sap</property>
+                    <property name="nativeName">ref_sap</property>
+                    <property name="dataType">integer</property>
+                </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[select f.no_expediente, f.no_factura, 
-f.tipo, f.creado, f.ref_secuencia
+f.tipo, f.creado, f.ref_secuencia, 
+case f.tipo 
+  when 'CA' then f.ref_secuencia
+  else e.idExpediente
+end as ref_sap
 from facturas f
+inner join expedientes e on e.no_exp = f.no_expediente
 where (1 = 1)
 and date(f.creado) >= ? and date(f.creado) <= ?]]></xml-property>
         </oda-data-set>
@@ -301,6 +305,12 @@ and date(f.creado) >= ? and date(f.creado) <= ?]]></xml-property>
                     <expression name="expression" type="javascript">dataSetRow["REF_SECUENCIA"]</expression>
                     <property name="dataType">integer</property>
                 </structure>
+                <structure>
+                    <property name="name">ref_sap</property>
+                    <text-property name="displayName">ref_sap</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ref_sap"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
             </list-property>
             <property name="repeatHeader">false</property>
             <property name="pageBreakInterval">0</property>
@@ -333,7 +343,7 @@ and date(f.creado) >= ? and date(f.creado) <= ?]]></xml-property>
                     </cell>
                     <cell id="22">
                         <label id="23">
-                            <text-property name="text">Referencia</text-property>
+                            <text-property name="text">Referencia (SAP)</text-property>
                         </label>
                     </cell>
                 </row>
@@ -362,8 +372,8 @@ and date(f.creado) >= ? and date(f.creado) <= ?]]></xml-property>
                     </cell>
                     <cell id="33">
                         <property name="textAlign">right</property>
-                        <data id="34">
-                            <property name="resultSetColumn">REF_SECUENCIA</property>
+                        <data id="47">
+                            <property name="resultSetColumn">ref_sap</property>
                         </data>
                     </cell>
                 </row>
