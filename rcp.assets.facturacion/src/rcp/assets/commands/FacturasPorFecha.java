@@ -29,6 +29,7 @@ public class FacturasPorFecha extends AbstractHandler implements IHandler {
 			System.out.println("Fecha final: " + parametros.get("fechaFin"));
 			
 			VerFacturasController controller = new VerFacturasController();
+			controller.agregarParametro("tipoFactura", parametros.get("tipoFactura"));
 			controller.agregarParametro("fechaIni", parametros.get("fechaIni"));
 			controller.agregarParametro("fechaFin", parametros.get("fechaFin"));
 			controller.generarDocumentoExcel(new Browser(shell, SWT.None), "/reports/listadoFacturas.rptdesign");

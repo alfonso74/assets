@@ -1,5 +1,8 @@
 package rcp.assets.dialogs;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.jface.dialogs.IDialogConstants;
@@ -15,14 +18,13 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.forms.widgets.Form;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Text;
 
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.nebula.widgets.calendarcombo.CalendarCombo;
 
 import rcp.assets.services.CalComboSettings;
-import org.eclipse.swt.widgets.List;
 import java.util.Date;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Group;
 
 
 public class FacturasPorFechaDialogo extends AbstractAEPTitleAreaDialog {
@@ -30,6 +32,10 @@ public class FacturasPorFechaDialogo extends AbstractAEPTitleAreaDialog {
 	private Shell shell;
 	
 	private Map<String, Object> parametros;
+	
+	private Button btnAnualidades;
+	private Button btnRetainers;
+	private Button btnCasos;
 	private CalendarCombo comboFechaIni;
 	private CalendarCombo comboFechaFin;
 
@@ -57,14 +63,33 @@ public class FacturasPorFechaDialogo extends AbstractAEPTitleAreaDialog {
 		gridLayout.marginHeight = 15;
 		gridLayout.marginWidth = 10;
 		frmNewForm.getBody().setLayout(gridLayout);
+		new Label(frmNewForm.getBody(), SWT.NONE);
+		
+		Group group = new Group(frmNewForm.getBody(), SWT.NONE);
+		GridData gd_group = new GridData(SWT.FILL, SWT.FILL, true, false, 1, 2);
+		gd_group.verticalIndent = 10;
+		group.setLayoutData(gd_group);
+		formToolkit.adapt(group);
+		formToolkit.paintBordersFor(group);
+		GridLayout gl_group = new GridLayout(1, false);
+		gl_group.marginHeight = 1;
+		gl_group.marginBottom = 5;
+		group.setLayout(gl_group);
+		
+		btnAnualidades = new Button(group, SWT.CHECK);
+		formToolkit.adapt(btnAnualidades, true, true);
+		btnAnualidades.setText("Anualidades");
+		
+		btnRetainers = new Button(group, SWT.CHECK);
+		formToolkit.adapt(btnRetainers, true, true);
+		btnRetainers.setText("Retainers");
+		
+		btnCasos = new Button(group, SWT.CHECK);
+		formToolkit.adapt(btnCasos, true, true);
+		btnCasos.setText("Caso");
 		
 		Label lblDescripcion = formToolkit.createLabel(frmNewForm.getBody(), "Tipo de facturas:", SWT.NONE);
 		lblDescripcion.setLayoutData(new GridData(SWT.RIGHT, SWT.TOP, false, false, 1, 1));
-		
-		List tipoFacturas = new List(frmNewForm.getBody(), SWT.BORDER | SWT.MULTI);
-		tipoFacturas.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1));
-		tipoFacturas.setItems(new String[] {"Anualidad", "Retainer", "Facturaci\u00F3n especial"});
-		formToolkit.adapt(tipoFacturas, true, true);
 		
 		Label lblFechaInicial = new Label(frmNewForm.getBody(), SWT.NONE);
 		lblFechaInicial.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
@@ -72,7 +97,6 @@ public class FacturasPorFechaDialogo extends AbstractAEPTitleAreaDialog {
 		lblFechaInicial.setText("Fecha inicial:");
 		
 		comboFechaIni = new CalendarCombo(frmNewForm.getBody(), SWT.NONE, new CalComboSettings(), null);
-		comboFechaIni.setDate(new Date(978325200000L));
 		formToolkit.adapt(comboFechaIni);
 		formToolkit.paintBordersFor(comboFechaIni);
 		
@@ -82,7 +106,6 @@ public class FacturasPorFechaDialogo extends AbstractAEPTitleAreaDialog {
 		lblFechaFinal.setText("Fecha final:");
 		
 		comboFechaFin = new CalendarCombo(frmNewForm.getBody(), SWT.NONE, new CalComboSettings(), null);
-		comboFechaFin.setDate(new Date(1343192400000L));
 		formToolkit.adapt(comboFechaFin);
 		formToolkit.paintBordersFor(comboFechaFin);
 
@@ -108,13 +131,17 @@ public class FacturasPorFechaDialogo extends AbstractAEPTitleAreaDialog {
 	 */
 	@Override
 	protected Point getInitialSize() {
-		return new Point(400, 304);
+		return new Point(400, 370);
 	}
 
 	@Override
 	protected void llenarCampos() {
 		setTitle("Reporte de Facturas (x Fecha)");
 		setMessage("Introduzca el rango de fechas y seleccione los tipos de facturas a incluir en el reporte.");
+		btnAnualidades.setSelection(true);
+		btnRetainers.setSelection(true);
+		comboFechaIni.setDate(new Date());
+		comboFechaFin.setDate(new Date());
 	}
 	
 	public boolean validarSave() {
@@ -122,6 +149,11 @@ public class FacturasPorFechaDialogo extends AbstractAEPTitleAreaDialog {
 //			MessageDialog.openError(shell, "Validación de campos", "Debe suministrar el periodo utilizado para importar al PeachTree");
 //			return false;
 //		}
+		if (!btnAnualidades.getSelection() && !btnRetainers.getSelection() &&
+				!btnCasos.getSelection()) {
+			MessageDialog.openError(shell, "Validación de campos", "Debe seleccionar al menos un tipo de factura");
+			return false;
+		}
 		return true;
 	}
 	
@@ -129,10 +161,22 @@ public class FacturasPorFechaDialogo extends AbstractAEPTitleAreaDialog {
 		if (getReturnCode() == IDialogConstants.OK_ID) {
 			try {
 				if (validarSave()) {
-//					parametros.put("periodo", txtPeriodo.getText().trim());
-//					parametros.put("formato", comboFormatoFecha.getText());
 					parametros.put("fechaIni", comboFechaIni.getDate().getTime());
 					parametros.put("fechaFin", comboFechaFin.getDate().getTime());
+					
+					List<String> tipoFacturas = new ArrayList<String>();
+					if (btnAnualidades.getSelection()) {
+						tipoFacturas.add("AN");
+					}
+					if (btnRetainers.getSelection()) {
+						tipoFacturas.add("RE");
+					}
+					if (btnCasos.getSelection()) {
+						tipoFacturas.add("CA");
+					}
+
+					parametros.put("tipoFactura", tipoFacturas.toArray());
+					
 					return super.close();
 				} else {
 					return false;

@@ -68,6 +68,31 @@
                 <property name="category">Unformatted</property>
             </structure>
         </scalar-parameter>
+        <scalar-parameter name="tipoFactura" id="46">
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">CA</value>
+            </simple-property-list>
+            <list-property name="selectionList">
+                <structure>
+                    <property name="value">CA</property>
+                    <property name="label">Caso</property>
+                </structure>
+                <structure>
+                    <property name="value">AN</property>
+                    <property name="label">Anualidad</property>
+                </structure>
+            </list-property>
+            <property name="paramType">multi-value</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">true</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Assets Produccion" id="7">
@@ -96,16 +121,6 @@
     <data-sets>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Facturas" id="10">
             <property name="nullsOrdering">nulls lowest</property>
-            <list-property name="columnHints">
-                <structure>
-                    <property name="columnName">NO_EXPEDIENTE</property>
-                    <property name="analysis">dimension</property>
-                </structure>
-                <structure>
-                    <property name="columnName">NO_FACTURA</property>
-                    <property name="analysis">dimension</property>
-                </structure>
-            </list-property>
             <list-property name="parameters">
                 <structure>
                     <property name="name">fechaIni</property>
@@ -153,6 +168,21 @@
                     </structure>
                 </list-property>
             </structure>
+            <method name="beforeOpen"><![CDATA[var noTipos = params["tipoFactura"].value.length;
+if (noTipos > 0) {
+	whereClause = " and tipo in ('";
+}
+for (i = 0; i < noTipos; i++) {
+	if (i == 0) {
+		whereClause = whereClause + params["tipoFactura"].value[i];
+	} else {
+		whereClause = whereClause + "', '" + params["tipoFactura"].value[i];
+	}
+}
+if (noTipos > 0) {
+	this.queryText = this.queryText + whereClause + "') ";
+}
+this.queryText = this.queryText + " order by creado"]]></method>
             <property name="dataSource">Assets Produccion</property>
             <list-property name="resultSet">
                 <structure>
@@ -190,7 +220,7 @@
 f.tipo, f.creado, f.ref_secuencia
 from facturas f
 where (1 = 1)
-and f.creado >= ? and f.creado <= ?;]]></xml-property>
+and date(f.creado) >= ? and date(f.creado) <= ?]]></xml-property>
         </oda-data-set>
     </data-sets>
     <styles>
