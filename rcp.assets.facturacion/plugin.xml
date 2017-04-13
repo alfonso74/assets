@@ -257,6 +257,12 @@
             allPopups="false"
             locationURI="toolbar:rcp.assets.views.seguimiento.FacturasView">
          <command
+               commandId="rcp.assets.commands.FacturasPorFecha"
+               icon="icons/excel_16.png"
+               label="Generar informe de facturas"
+               style="push">
+         </command>
+         <command
                commandId="rcp.assets.commands.ImprimirFacturaHandler"
                icon="icons/excel_16.png"
                label="Imprimir factura"
@@ -425,6 +431,11 @@
             defaultHandler="rcp.assets.commands.BorrarGrupoHandler"
             id="rcp.assets.commands.BorrarGrupoHandler"
             name="Borrar grupo">
+      </command>
+      <command
+            defaultHandler="rcp.assets.commands.FacturasPorFecha"
+            id="rcp.assets.commands.FacturasPorFecha"
+            name="Generar informe de facturas">
       </command>
       <command
             defaultHandler="rcp.assets.commands.ImprimirFacturaHandler"
