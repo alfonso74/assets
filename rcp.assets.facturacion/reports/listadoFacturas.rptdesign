@@ -302,6 +302,8 @@ and date(f.creado) >= ? and date(f.creado) <= ?]]></xml-property>
                     <property name="dataType">integer</property>
                 </structure>
             </list-property>
+            <property name="repeatHeader">false</property>
+            <property name="pageBreakInterval">0</property>
             <column id="41"/>
             <column id="42"/>
             <column id="43"/>
