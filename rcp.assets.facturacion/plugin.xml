@@ -466,7 +466,7 @@
             name="Exportar a PeachTree">
       </command>
       <command
-            defaultHandler="rcp.assets.commands.ExitHandler"
+            defaultHandler="rcp.assets.commands.NoActionHandler"
             id="generacionExcelFacturas"
             name="generacionExcelFacturas">
       </command>
