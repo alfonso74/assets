@@ -257,10 +257,10 @@
             allPopups="false"
             locationURI="toolbar:rcp.assets.views.seguimiento.FacturasView">
          <command
-               commandId="rcp.assets.commands.ImprimirFacturaHandler"
+               commandId="generacionExcelFacturas"
                icon="icons/excel_16.png"
-               label="Imprimir factura"
-               style="push">
+               label="Genera informes/facturas en excel"
+               style="pulldown">
          </command>
          <command
                commandId="rcp.assets.commands.AnularFacturaHandler"
@@ -289,6 +289,20 @@
                icon="icons/refresh_16.png"
                label="Actualizar"
                style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:generacionExcelFacturas">
+         <command
+               commandId="rcp.assets.commands.ImprimirFacturaHandler"
+               label="Imprimir factura"
+               style="pulldown">
+         </command>
+         <command
+               commandId="rcp.assets.commands.FacturasPorFecha"
+               label="Informe de facturas (SAP)"
+               style="pulldown">
          </command>
       </menuContribution>
    </extension>
@@ -427,6 +441,11 @@
             name="Borrar grupo">
       </command>
       <command
+            defaultHandler="rcp.assets.commands.FacturasPorFecha"
+            id="rcp.assets.commands.FacturasPorFecha"
+            name="Generar informe de facturas">
+      </command>
+      <command
             defaultHandler="rcp.assets.commands.ImprimirFacturaHandler"
             id="rcp.assets.commands.ImprimirFacturaHandler"
             name="Imprimir factura">
@@ -445,6 +464,11 @@
             defaultHandler="rcp.assets.commands.ExportarPeachTree"
             id="rcp.assets.commands.ExportarPeachtreeHandler"
             name="Exportar a PeachTree">
+      </command>
+      <command
+            defaultHandler="rcp.assets.commands.NoActionHandler"
+            id="generacionExcelFacturas"
+            name="generacionExcelFacturas">
       </command>
    </extension>
    <extension

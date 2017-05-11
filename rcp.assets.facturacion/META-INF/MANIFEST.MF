@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Facturacion
 Bundle-SymbolicName: rcp.assets.facturacion; singleton:=true
-Bundle-Version: 1.0.4.qualifier
+Bundle-Version: 1.0.5.qualifier
 Bundle-Activator: rcp.assets.facturacion.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,

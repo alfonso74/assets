@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 3.7.2.v20120213 Build &lt;3.7.2.v20120214-1408></property>
+    <list-property name="propertyBindings">
+        <structure>
+            <property name="name">odaURL</property>
+            <property name="id">7</property>
+            <expression name="value" type="javascript">params["connectionURL"].value</expression>
+        </structure>
+    </list-property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <parameters>
+        <scalar-parameter name="connectionURL" id="8">
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">jdbc:mysql://localhost:3306/assets</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="fechaIni" id="9">
+            <property name="valueType">static</property>
+            <property name="dataType">dateTime</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">2000-01-01</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="fechaFin" id="11">
+            <property name="valueType">static</property>
+            <property name="dataType">dateTime</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">2012-07-25</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="tipoFactura" id="46">
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">CA</value>
+            </simple-property-list>
+            <list-property name="selectionList">
+                <structure>
+                    <property name="value">CA</property>
+                    <property name="label">Caso</property>
+                </structure>
+                <structure>
+                    <property name="value">AN</property>
+                    <property name="label">Anualidad</property>
+                </structure>
+            </list-property>
+            <property name="paramType">multi-value</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">true</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Assets Produccion" id="7">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://localhost:3306/assets</property>
+            <property name="odaUser">lnotes</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">bG5vdGVz</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Facturas" id="10">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">fechaIni</property>
+                    <property name="paramName">fechaIni</property>
+                    <property name="dataType">date</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">fechaFin</property>
+                    <property name="paramName">fechaFin</property>
+                    <property name="dataType">date</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">NO_EXPEDIENTE</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">NOMBRE</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">NO_FACTURA</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">TIPO</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">CREADO</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">REF_SECUENCIA</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">ref_sap</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <method name="beforeOpen"><![CDATA[var noTipos = params["tipoFactura"].value.length;
+if (noTipos > 0) {
+	whereClause = " and tipo in ('";
+}
+for (i = 0; i < noTipos; i++) {
+	if (i == 0) {
+		whereClause = whereClause + params["tipoFactura"].value[i];
+	} else {
+		whereClause = whereClause + "', '" + params["tipoFactura"].value[i];
+	}
+}
+if (noTipos > 0) {
+	this.queryText = this.queryText + whereClause + "') ";
+}
+this.queryText = this.queryText + " order by creado"]]></method>
+            <property name="dataSource">Assets Produccion</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">NO_EXPEDIENTE</property>
+                    <property name="nativeName">NO_EXPEDIENTE</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">NOMBRE</property>
+                    <property name="nativeName">NOMBRE</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">NO_FACTURA</property>
+                    <property name="nativeName">NO_FACTURA</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">TIPO</property>
+                    <property name="nativeName">TIPO</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">CREADO</property>
+                    <property name="nativeName">CREADO</property>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">REF_SECUENCIA</property>
+                    <property name="nativeName">REF_SECUENCIA</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">ref_sap</property>
+                    <property name="nativeName">ref_sap</property>
+                    <property name="dataType">integer</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select f.no_expediente, e.nombre, f.no_factura, 
+f.tipo, f.creado, f.ref_secuencia, 
+case f.tipo 
+  when 'CA' then f.ref_secuencia
+  else e.idExpediente
+end as ref_sap
+from facturas f
+inner join expedientes e on e.no_exp = f.no_expediente
+where (1 = 1)
+and date(f.creado) >= ? and date(f.creado) <= ?]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <table id="12">
+            <property name="dataSet">Facturas</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">NO_EXPEDIENTE</property>
+                    <text-property name="displayName">NO_EXPEDIENTE</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["NO_EXPEDIENTE"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">NO_FACTURA</property>
+                    <text-property name="displayName">NO_FACTURA</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["NO_FACTURA"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TIPO</property>
+                    <text-property name="displayName">TIPO</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TIPO"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">CREADO</property>
+                    <text-property name="displayName">CREADO</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["CREADO"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">REF_SECUENCIA</property>
+                    <text-property name="displayName">REF_SECUENCIA</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["REF_SECUENCIA"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">ref_sap</property>
+                    <text-property name="displayName">ref_sap</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ref_sap"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">NOMBRE</property>
+                    <text-property name="displayName">NOMBRE</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["NOMBRE"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <property name="repeatHeader">false</property>
+            <property name="pageBreakInterval">0</property>
+            <column id="41"/>
+            <column id="51"/>
+            <column id="42"/>
+            <column id="43"/>
+            <column id="44"/>
+            <column id="45"/>
+            <header>
+                <row id="13">
+                    <cell id="14">
+                        <label id="15">
+                            <text-property name="text">No Expediente</text-property>
+                        </label>
+                    </cell>
+                    <cell id="48">
+                        <label id="52">
+                            <text-property name="text">Expediente</text-property>
+                        </label>
+                    </cell>
+                    <cell id="16">
+                        <label id="17">
+                            <text-property name="text">Factura</text-property>
+                        </label>
+                    </cell>
+                    <cell id="18">
+                        <label id="19">
+                            <text-property name="text">Tipo</text-property>
+                        </label>
+                    </cell>
+                    <cell id="20">
+                        <label id="21">
+                            <text-property name="text">Creado</text-property>
+                        </label>
+                    </cell>
+                    <cell id="22">
+                        <label id="23">
+                            <text-property name="text">Referencia (SAP)</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="24">
+                    <cell id="25">
+                        <data id="26">
+                            <property name="resultSetColumn">NO_EXPEDIENTE</property>
+                        </data>
+                    </cell>
+                    <cell id="49">
+                        <data id="53">
+                            <property name="resultSetColumn">NOMBRE</property>
+                        </data>
+                    </cell>
+                    <cell id="27">
+                        <data id="28">
+                            <property name="resultSetColumn">NO_FACTURA</property>
+                        </data>
+                    </cell>
+                    <cell id="29">
+                        <data id="30">
+                            <property name="resultSetColumn">TIPO</property>
+                        </data>
+                    </cell>
+                    <cell id="31">
+                        <data id="32">
+                            <property name="resultSetColumn">CREADO</property>
+                        </data>
+                    </cell>
+                    <cell id="33">
+                        <property name="textAlign">right</property>
+                        <data id="47">
+                            <property name="resultSetColumn">ref_sap</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="35">
+                    <cell id="36"/>
+                    <cell id="50"/>
+                    <cell id="37"/>
+                    <cell id="38"/>
+                    <cell id="39"/>
+                    <cell id="40"/>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>
