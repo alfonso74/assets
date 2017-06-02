@@ -60,8 +60,14 @@ public class TipoCargosView extends AbstractViewPart {
 			{
 				TableViewerColumn tableViewerColumn = new TableViewerColumn(viewer, SWT.NONE);
 				TableColumn tblclmnCodigo = tableViewerColumn.getColumn();
-				tblclmnCodigo.setWidth(50);
+				tblclmnCodigo.setWidth(53);
 				tblclmnCodigo.setText("C\u00F3digo");
+			}
+			{
+				TableViewerColumn tableViewerColumn = new TableViewerColumn(viewer, SWT.NONE);
+				TableColumn tblclmnGrupo = tableViewerColumn.getColumn();
+				tblclmnGrupo.setWidth(52);
+				tblclmnGrupo.setText("Grupo");
 			}
 			{
 				TableViewerColumn tableViewerColumn = new TableViewerColumn(viewer, SWT.LEFT);
@@ -211,27 +217,30 @@ public class TipoCargosView extends AbstractViewPart {
 				resultado = formUtils.valor2Txt(k.getNoTipoCargo());
 				break;
 			case 1:
-				resultado = k.getDescripcion();
+				resultado = k.getGrupo();
 				break;
 			case 2:
+				resultado = k.getDescripcion();
+				break;
+			case 3:
 				resultado = k.getDescripcionIngles();
 				break;	
-			case 3:
+			case 4:
 				resultado = formUtils.valor2Txt(k.getValor(), "#,##0.00");
 				break;
-			case 4:
+			case 5:
 				resultado = formUtils.valor2Txt(k.getPrioridad());
 				break;
-			case 5:
+			case 6:
 				resultado = k.getHonorario();
 				break;
-			case 6:
+			case 7:
 				resultado = k.getPagaImpuesto();
 				break;
-			case 7:
+			case 8:
 				resultado = k.getIngreso();
 				break;
-			case 8:
+			case 9:
 				resultado = k.getDspEstado();
 				break;
 			}
