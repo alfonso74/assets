@@ -39,9 +39,11 @@ public class TipoCargosEditor extends AbstractEditor {
 	private Text txtCodigo;
 	private Text txtNombre;
 	private Text txtValor;
+	private Combo comboGrupo;
 	private Combo comboImpuesto;
 	private Combo comboEstado;
 	
+	private ComboData cdGrupo;
 	private ComboData cdOpcionYN;
 	private ComboData cdEstado;
 	
@@ -60,10 +62,13 @@ public class TipoCargosEditor extends AbstractEditor {
 	private Label lblHonorario;
 	private Label lblPrioridad;
 	private Text txtPrioridad;
+	private Label lblGrupo;
+	
 	
 
 	public TipoCargosEditor() {
 		controller = new TipoCargosController(idSession);
+		cdGrupo = ComboDataManager.getInstance().getComboData(IBaseKeywords.TipoKeyword.GRUPO.getDescripcion());
 		cdOpcionYN = ComboDataManager.getInstance().getComboData(IBaseKeywords.TipoKeyword.CONDICIONAL.getDescripcion());
 		cdEstado = ComboDataManager.getInstance().getComboData(IBaseKeywords.TipoKeyword.STATUS.getDescripcion());
 	}
@@ -105,6 +110,17 @@ public class TipoCargosEditor extends AbstractEditor {
 		gd_txtCodigo.widthHint = 45;
 		txtCodigo.setLayoutData(gd_txtCodigo);
 		formToolkit.adapt(txtCodigo, true, true);
+		
+		lblGrupo = new Label(composite, SWT.NONE);
+		lblGrupo.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		formToolkit.adapt(lblGrupo, true, true);
+		lblGrupo.setText("Grupo:");
+		
+		comboGrupo = new Combo(composite, SWT.READ_ONLY);
+		comboGrupo.setItems(cdGrupo.getTexto());
+		formToolkit.adapt(comboGrupo);
+		formToolkit.paintBordersFor(comboGrupo);
+		comboGrupo.addModifyListener(createModifyListener());
 		
 		Label lblNombre = formToolkit.createLabel(composite, "Nombre (esp):", SWT.NONE);
 		lblNombre.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
@@ -265,6 +281,7 @@ public class TipoCargosEditor extends AbstractEditor {
 			registro = new TipoCargo();
 			lblCodigo.setEnabled(true);
 			txtCodigo.setEnabled(true);
+			comboGrupo.setText(cdGrupo.getTexto()[0]);
 			txtValor.setText("0.00");
 			txtPrioridad.setText("99");
 			comboImpuesto.setText(IBaseKeywords.CONDICIONAL[0]);
@@ -273,6 +290,7 @@ public class TipoCargosEditor extends AbstractEditor {
 		}else {
 			registro = controller.getRegistroById(getEditorInput().getId());
 			txtCodigo.setText(valor2Txt(registro.getNoTipoCargo()));
+			comboGrupo.setText(checkNull(cdGrupo.getTextoByKey(registro.getGrupo())));
 			txtNombre.setText(registro.getDescripcion());
 			txtNombreIngles.setText(checkNull(registro.getDescripcionIngles()));
 			txtValor.setText(valor2Txt(registro.getValor(), "#,##0.00"));
@@ -300,6 +318,7 @@ public class TipoCargosEditor extends AbstractEditor {
 		}
 		
 		String pCodigo = txtCodigo.getText().trim();
+		String pGrupo = cdGrupo.getKeyByIndex(comboGrupo.getSelectionIndex());
 		String pNombre = txtNombre.getText().trim();
 		String pNombreIngles = txtNombreIngles.getText().trim();
 		String pValor = txtValor.getText();
@@ -316,6 +335,7 @@ public class TipoCargosEditor extends AbstractEditor {
 		String pNivel5 = txtNivel5.getText().trim();
 		
 		registro.setNoTipoCargo(txt2Integer(pCodigo));
+		registro.setGrupo(pGrupo);
 		registro.setDescripcion(pNombre);
 		registro.setDescripcionIngles(pNombreIngles);
 		registro.setValor(txt2Float(pValor));
