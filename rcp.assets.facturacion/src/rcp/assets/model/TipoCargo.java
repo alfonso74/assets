@@ -8,6 +8,8 @@ public class TipoCargo implements IEditableDocument {
 	private String descripcionIngles;
 	private Float valor;
 	private Integer prioridad;
+	private String grupo;
+	private String dspGrupo;
 	private String estado;
 	private String dspEstado;
 	
@@ -20,7 +22,7 @@ public class TipoCargo implements IEditableDocument {
 	private String nivel3;
 	private String nivel4;
 	private String nivel5;
-
+	
 
 	public TipoCargo() {
 	}
@@ -188,6 +190,22 @@ public class TipoCargo implements IEditableDocument {
 
 	public void setNivel5(String nivel5) {
 		this.nivel5 = nivel5;
+	}
+	
+	public String getGrupo() {
+		return grupo;
+	}
+
+	public void setGrupo(String grupo) {
+		this.grupo = grupo;
+	}
+
+	public String getDspGrupo() {
+		return dspGrupo;
+	}
+
+	public void setDspGrupo(String dspGrupo) {
+		this.dspGrupo = dspGrupo;
 	}
 
 	public String getEstado() {

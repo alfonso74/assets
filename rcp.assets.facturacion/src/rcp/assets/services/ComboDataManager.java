@@ -131,7 +131,7 @@ public final class ComboDataManager {
 
 	public String[] getListaTipoKeywords() {
 		if (listaTipoKeywords.isEmpty()) {
-			return IBaseKeywords.TIPO_KEYWORDS;
+			return getListaTipoKeywordsDefault();
 		};
 		return listaTipoKeywords.toArray(new String[listaTipoKeywords.size()]);
 	}

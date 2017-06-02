@@ -31,6 +31,7 @@ public class InicializarKeywords {
 		String kStatusCaso = IBaseKeywords.TipoKeyword.STATUS_CASO.getDescripcion();
 		String kRecargoAnualidad = IBaseKeywords.TipoKeyword.RECARGO.getDescripcion();
 		String kTipoNotificacion = IBaseKeywords.TipoKeyword.NOTIFICACION.getDescripcion();
+		String kGrupoCargo = IBaseKeywords.TipoKeyword.GRUPO.getDescripcion();
 		
 		crearRegistro(new Keyword("A", "Activo", kStatusGeneral, 1, Keyword.Estado.ACTIVO));
 		crearRegistro(new Keyword("I", "Inactivo", kStatusGeneral, 2, Keyword.Estado.ACTIVO));
@@ -55,6 +56,8 @@ public class InicializarKeywords {
 		crearRegistro(new Keyword("AN01", "Anualidad", kTipoNotificacion, 1, Keyword.Estado.ACTIVO));
 //		crearRegistro(new Keyword("AN01", "Anualidad (largo)", kTipoNotificacion, 1, Keyword.Estado.ACTIVO));
 //		crearRegistro(new Keyword("AN02", "Anualidad (corta)", kTipoNotificacion, 2, Keyword.Estado.ACTIVO));
+		crearRegistro(new Keyword("LT", "Legal Track", kGrupoCargo, 1, Keyword.Estado.ACTIVO));
+		crearRegistro(new Keyword("SAP", "SAP", kGrupoCargo, 2, Keyword.Estado.ACTIVO));
 	}
 	
 	

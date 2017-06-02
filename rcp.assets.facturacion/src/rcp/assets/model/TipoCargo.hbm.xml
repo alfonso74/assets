@@ -10,6 +10,10 @@
 			<generator class="native"/>
 		</id>
 		<property name="noTipoCargo" column="NO_TIPO_CARGO"/>
+		<property name="grupo" column="GRUPO"/>
+		<property name="dspGrupo"
+			formula="(select k.descripcion from keywords k
+				where k.codigo = estado and k.tipo = 'Grupo de cargo')"/>
 		<property name="descripcion"/>
 		<property name="descripcionIngles" column="DESC_INGLES"/>
 		<property name="valor"/>
