@@ -100,6 +100,12 @@ public class GenericDAOImpl<T, ID extends Serializable>
 		return resultados;
 	}
 	
+	public List<T> findByField(String nombreCampo, Integer valor) {
+		Criterion criterion = Restrictions.eq(nombreCampo, valor);
+		List<T> resultados = findByCriteria(criterion); 
+		return resultados;
+	}
+	
 	public List<T> findByField(String nombreCampo, boolean valor) {
 		Criterion criterion = Restrictions.eq(nombreCampo, valor);
 		List<T> resultados = findByCriteria(criterion); 

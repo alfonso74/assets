@@ -318,6 +318,14 @@ public class TipoCargosEditor extends AbstractEditor {
 		}
 		
 		String pCodigo = txtCodigo.getText().trim();
+		if (registro.getNoTipoCargo() == null ||
+				registro.getNoTipoCargo() != Integer.parseInt(pCodigo)) {
+			if (!codigoDisponible(pCodigo)) {
+				monitor.setCanceled(true);
+				return;
+			}
+		}
+		
 		String pGrupo = cdGrupo.getKeyByIndex(comboGrupo.getSelectionIndex());
 		String pNombre = txtNombre.getText().trim();
 		String pNombreIngles = txtNombreIngles.getText().trim();
@@ -412,6 +420,17 @@ public class TipoCargosEditor extends AbstractEditor {
 			return false;
 		}
 		
+		return true;
+	}
+	
+	private boolean codigoDisponible(String codigoTipoCargo) {
+		boolean codigoDisponible = controller.codigoDisponible(codigoTipoCargo);
+		if (!codigoDisponible) {
+			MessageDialog.openInformation(getSite().getShell(), "Validación de campos",
+					"El código '" + codigoTipoCargo + "' ya está asignado a otro tipo de cargo.  Por favor seleccione\n" +
+					"otro código.");
+			return false;
+		}
 		return true;
 	}
 	
