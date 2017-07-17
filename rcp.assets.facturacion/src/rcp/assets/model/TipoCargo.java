@@ -3,7 +3,7 @@ package rcp.assets.model;
 public class TipoCargo implements IEditableDocument {
 
 	private Long idTipoCargo = -1L;
-	private Integer noTipoCargo;
+	private String noTipoCargo;
 	private String descripcion;
 	private String descripcionIngles;
 	private Float valor;
@@ -96,11 +96,11 @@ public class TipoCargo implements IEditableDocument {
 		this.idTipoCargo = idTipoCargo;
 	}
 
-	public Integer getNoTipoCargo() {
+	public String getNoTipoCargo() {
 		return noTipoCargo;
 	}
 
-	public void setNoTipoCargo(Integer noTipoCargo) {
+	public void setNoTipoCargo(String noTipoCargo) {
 		this.noTipoCargo = noTipoCargo;
 	}
 

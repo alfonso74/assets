@@ -214,7 +214,7 @@ public class TipoCargosView extends AbstractViewPart {
 			TipoCargo k = (TipoCargo) element;
 			switch (columnIndex) {
 			case 0:
-				resultado = formUtils.valor2Txt(k.getNoTipoCargo());
+				resultado = k.getNoTipoCargo();
 				break;
 			case 1:
 				resultado = k.getGrupo();

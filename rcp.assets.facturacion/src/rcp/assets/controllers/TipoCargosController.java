@@ -44,7 +44,7 @@ public class TipoCargosController extends AbstractController<TipoCargo> {
 		if (codigoTipoCargo == null || codigoTipoCargo.isEmpty()) {
 			return disponible;
 		}
-		List<TipoCargo> results = getDAO().findByField("noTipoCargo", Integer.parseInt(codigoTipoCargo));
+		List<TipoCargo> results = getDAO().findByField("noTipoCargo", codigoTipoCargo);
 		if (results == null || results.isEmpty()) {
 			disponible = true;
 		}

@@ -105,7 +105,6 @@ public class TipoCargosEditor extends AbstractEditor {
 		lblCodigo.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		
 		txtCodigo = new Text(composite, SWT.BORDER);
-		txtCodigo.setEnabled(false);
 		GridData gd_txtCodigo = new GridData(SWT.LEFT, SWT.CENTER, true, false, 1, 1);
 		gd_txtCodigo.widthHint = 45;
 		txtCodigo.setLayoutData(gd_txtCodigo);
@@ -289,7 +288,7 @@ public class TipoCargosEditor extends AbstractEditor {
 			this.setPartName("Nuevo tipo de cargo");
 		}else {
 			registro = controller.getRegistroById(getEditorInput().getId());
-			txtCodigo.setText(valor2Txt(registro.getNoTipoCargo()));
+			txtCodigo.setText(registro.getNoTipoCargo());
 			comboGrupo.setText(checkNull(cdGrupo.getTextoByKey(registro.getGrupo())));
 			txtNombre.setText(registro.getDescripcion());
 			txtNombreIngles.setText(checkNull(registro.getDescripcionIngles()));
@@ -319,7 +318,7 @@ public class TipoCargosEditor extends AbstractEditor {
 		
 		String pCodigo = txtCodigo.getText().trim();
 		if (registro.getNoTipoCargo() == null ||
-				registro.getNoTipoCargo() != Integer.parseInt(pCodigo)) {
+				!registro.getNoTipoCargo().equals(pCodigo)) {
 			if (!codigoDisponible(pCodigo)) {
 				monitor.setCanceled(true);
 				return;
@@ -342,7 +341,7 @@ public class TipoCargosEditor extends AbstractEditor {
 		String pNivel4 = txtNivel4.getText().trim();
 		String pNivel5 = txtNivel5.getText().trim();
 		
-		registro.setNoTipoCargo(txt2Integer(pCodigo));
+		registro.setNoTipoCargo(pCodigo);
 		registro.setGrupo(pGrupo);
 		registro.setDescripcion(pNombre);
 		registro.setDescripcionIngles(pNombreIngles);
