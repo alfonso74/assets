@@ -44,6 +44,7 @@ public class InicializarKeywords {
 		crearRegistro(new Keyword("INA", "Inactivo", kStatusExpediente, 3, Keyword.Estado.ACTIVO));
 		crearRegistro(new Keyword("RES", "En reserva", kStatusExpediente, 4, Keyword.Estado.ACTIVO));
 		crearRegistro(new Keyword("STR", "Strike off", kStatusExpediente, 5, Keyword.Estado.ACTIVO));
+		crearRegistro(new Keyword("REN", "Renuncia", kStatusExpediente, 6, Keyword.Estado.ACTIVO));
 		crearRegistro(new Keyword("AB", "Abierto", kStatusCaso, 1, Keyword.Estado.ACTIVO));
 		crearRegistro(new Keyword("AN", "Anulado", kStatusCaso, 2, Keyword.Estado.ACTIVO));
 		crearRegistro(new Keyword("CE", "Cerrado", kStatusCaso, 3, Keyword.Estado.ACTIVO));
