@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="FacturaTrack" id="rcp.assets.facturacion.product" application="rcp.assets.facturacion.application" version="1.0.6" useFeatures="false" includeLaunchers="true">
+<product name="FacturaTrack" id="rcp.assets.facturacion.product" application="rcp.assets.facturacion.application" version="1.0.7" useFeatures="false" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>

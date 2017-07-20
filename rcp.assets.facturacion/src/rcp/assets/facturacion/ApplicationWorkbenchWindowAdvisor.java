@@ -33,7 +33,7 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
         }
         configurer.setShowCoolBar(true);
         configurer.setShowStatusLine(true);
-        configurer.setTitle("FacturaTrack v1.0.7 - Snapshot");
+        configurer.setTitle("FacturaTrack v1.0.7");
     }
 
 	@Override
