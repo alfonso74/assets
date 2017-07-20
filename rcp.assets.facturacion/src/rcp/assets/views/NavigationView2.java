@@ -11,11 +11,9 @@ import org.eclipse.nebula.widgets.pshelf.PShelfItem;
 import org.eclipse.wb.swt.ResourceManager;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.IViewReference;
-import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.forms.widgets.FormToolkit;
-import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -51,6 +49,8 @@ public class NavigationView2 extends AbstractViewPart {
 	private Table table_3;
 	private Table table_4;
 	private Tree tree_5;
+	
+	private final String MAIN_MENU_VIEW_ID = "rcp.assets.views.NavigationView2";
 
 
 	public NavigationView2() {
@@ -232,7 +232,7 @@ public class NavigationView2 extends AbstractViewPart {
 								IViewReference[] viewList = getSite().getPage().getViewReferences();
 								for (int n = 0; n < viewList.length; n++) {
 									System.out.println("Vista: " + viewList[n].getPartName());
-									if (!viewList[n].getPartName().equals("Menú principal (v2)")) {
+									if (!viewList[n].getId().equals(MAIN_MENU_VIEW_ID)) {
 										getSite().getPage().hideView(viewList[n]);
 									}
 								}
@@ -244,7 +244,7 @@ public class NavigationView2 extends AbstractViewPart {
 								IViewReference[] viewList = getSite().getPage().getViewReferences();
 								for (int n = 0; n < viewList.length; n++) {
 									System.out.println("Vista: " + viewList[n].getPartName());
-									if (!viewList[n].getPartName().equals("Menú principal (v2)")) {
+									if (!viewList[n].getId().equals(MAIN_MENU_VIEW_ID)) {
 										getSite().getPage().hideView(viewList[n]);
 									}
 								}
@@ -255,7 +255,7 @@ public class NavigationView2 extends AbstractViewPart {
 								IViewReference[] viewList = getSite().getPage().getViewReferences();
 								for (int n = 0; n < viewList.length; n++) {
 									System.out.println("Vista: " + viewList[n].getPartName());
-									if (!viewList[n].getPartName().equals("Menú principal (v2)")) {
+									if (!viewList[n].getId().equals(MAIN_MENU_VIEW_ID)) {
 										getSite().getPage().hideView(viewList[n]);
 									}
 								}
@@ -265,7 +265,7 @@ public class NavigationView2 extends AbstractViewPart {
 								IViewReference[] viewList = getSite().getPage().getViewReferences();
 								for (int n = 0; n < viewList.length; n++) {
 									System.out.println("Vista: " + viewList[n].getPartName());
-									if (!viewList[n].getPartName().equals("Menú principal (v2)")) {
+									if (!viewList[n].getId().equals(MAIN_MENU_VIEW_ID)) {
 										getSite().getPage().hideView(viewList[n]);
 									}
 								}
@@ -275,7 +275,7 @@ public class NavigationView2 extends AbstractViewPart {
 								IViewReference[] viewList = getSite().getPage().getViewReferences();
 								for (int n = 0; n < viewList.length; n++) {
 									System.out.println("Vista: " + viewList[n].getPartName());
-									if (!viewList[n].getPartName().equals("Menú principal (v2)")) {
+									if (!viewList[n].getId().equals(MAIN_MENU_VIEW_ID)) {
 										getSite().getPage().hideView(viewList[n]);
 									}
 								}

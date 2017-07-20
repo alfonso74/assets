@@ -39,9 +39,11 @@ public class TipoCargosEditor extends AbstractEditor {
 	private Text txtCodigo;
 	private Text txtNombre;
 	private Text txtValor;
+	private Combo comboGrupo;
 	private Combo comboImpuesto;
 	private Combo comboEstado;
 	
+	private ComboData cdGrupo;
 	private ComboData cdOpcionYN;
 	private ComboData cdEstado;
 	
@@ -60,10 +62,13 @@ public class TipoCargosEditor extends AbstractEditor {
 	private Label lblHonorario;
 	private Label lblPrioridad;
 	private Text txtPrioridad;
+	private Label lblGrupo;
+	
 	
 
 	public TipoCargosEditor() {
 		controller = new TipoCargosController(idSession);
+		cdGrupo = ComboDataManager.getInstance().getComboData(IBaseKeywords.TipoKeyword.GRUPO.getDescripcion());
 		cdOpcionYN = ComboDataManager.getInstance().getComboData(IBaseKeywords.TipoKeyword.CONDICIONAL.getDescripcion());
 		cdEstado = ComboDataManager.getInstance().getComboData(IBaseKeywords.TipoKeyword.STATUS.getDescripcion());
 	}
@@ -100,11 +105,21 @@ public class TipoCargosEditor extends AbstractEditor {
 		lblCodigo.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		
 		txtCodigo = new Text(composite, SWT.BORDER);
-		txtCodigo.setEnabled(false);
 		GridData gd_txtCodigo = new GridData(SWT.LEFT, SWT.CENTER, true, false, 1, 1);
-		gd_txtCodigo.widthHint = 45;
+		gd_txtCodigo.widthHint = 60;
 		txtCodigo.setLayoutData(gd_txtCodigo);
 		formToolkit.adapt(txtCodigo, true, true);
+		
+		lblGrupo = new Label(composite, SWT.NONE);
+		lblGrupo.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		formToolkit.adapt(lblGrupo, true, true);
+		lblGrupo.setText("Grupo:");
+		
+		comboGrupo = new Combo(composite, SWT.READ_ONLY);
+		comboGrupo.setItems(cdGrupo.getTexto());
+		formToolkit.adapt(comboGrupo);
+		formToolkit.paintBordersFor(comboGrupo);
+		comboGrupo.addModifyListener(createModifyListener());
 		
 		Label lblNombre = formToolkit.createLabel(composite, "Nombre (esp):", SWT.NONE);
 		lblNombre.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
@@ -265,6 +280,7 @@ public class TipoCargosEditor extends AbstractEditor {
 			registro = new TipoCargo();
 			lblCodigo.setEnabled(true);
 			txtCodigo.setEnabled(true);
+			comboGrupo.setText(cdGrupo.getTexto()[0]);
 			txtValor.setText("0.00");
 			txtPrioridad.setText("99");
 			comboImpuesto.setText(IBaseKeywords.CONDICIONAL[0]);
@@ -272,7 +288,8 @@ public class TipoCargosEditor extends AbstractEditor {
 			this.setPartName("Nuevo tipo de cargo");
 		}else {
 			registro = controller.getRegistroById(getEditorInput().getId());
-			txtCodigo.setText(valor2Txt(registro.getNoTipoCargo()));
+			txtCodigo.setText(registro.getNoTipoCargo());
+			comboGrupo.setText(checkNull(cdGrupo.getTextoByKey(registro.getGrupo())));
 			txtNombre.setText(registro.getDescripcion());
 			txtNombreIngles.setText(checkNull(registro.getDescripcionIngles()));
 			txtValor.setText(valor2Txt(registro.getValor(), "#,##0.00"));
@@ -300,6 +317,15 @@ public class TipoCargosEditor extends AbstractEditor {
 		}
 		
 		String pCodigo = txtCodigo.getText().trim();
+		if (registro.getNoTipoCargo() == null ||
+				!registro.getNoTipoCargo().equals(pCodigo)) {
+			if (!codigoDisponible(pCodigo)) {
+				monitor.setCanceled(true);
+				return;
+			}
+		}
+		
+		String pGrupo = cdGrupo.getKeyByIndex(comboGrupo.getSelectionIndex());
 		String pNombre = txtNombre.getText().trim();
 		String pNombreIngles = txtNombreIngles.getText().trim();
 		String pValor = txtValor.getText();
@@ -315,7 +341,8 @@ public class TipoCargosEditor extends AbstractEditor {
 		String pNivel4 = txtNivel4.getText().trim();
 		String pNivel5 = txtNivel5.getText().trim();
 		
-		registro.setNoTipoCargo(txt2Integer(pCodigo));
+		registro.setNoTipoCargo(pCodigo);
+		registro.setGrupo(pGrupo);
 		registro.setDescripcion(pNombre);
 		registro.setDescripcionIngles(pNombreIngles);
 		registro.setValor(txt2Float(pValor));
@@ -366,6 +393,10 @@ public class TipoCargosEditor extends AbstractEditor {
 			MessageDialog.openInformation(getSite().getShell(), "Validación de campos",
 					"Debe introducir un código para el tipo de cargo.");
 			return false;
+		} else if (pCodigo.length() > 10) {
+			MessageDialog.openInformation(getSite().getShell(), "Validación de campos",
+					"En código para el tipo de cargo no puede tener más de 10 caracteres.");
+			return false;
 		} else if (pNombre.equals("")) {
 			MessageDialog.openInformation(getSite().getShell(), "Validación de campos",
 					"Debe introducir un nombre para el tipo de cargo.");
@@ -392,6 +423,17 @@ public class TipoCargosEditor extends AbstractEditor {
 			return false;
 		}
 		
+		return true;
+	}
+	
+	private boolean codigoDisponible(String codigoTipoCargo) {
+		boolean codigoDisponible = controller.codigoDisponible(codigoTipoCargo);
+		if (!codigoDisponible) {
+			MessageDialog.openInformation(getSite().getShell(), "Validación de campos",
+					"El código '" + codigoTipoCargo + "' ya está asignado a otro tipo de cargo.  Por favor seleccione\n" +
+					"otro código.");
+			return false;
+		}
 		return true;
 	}
 	

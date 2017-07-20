@@ -460,7 +460,7 @@ public class FacturarCargos extends AbstractEditor {
 				resultado = k.getTipoCargo().getDescripcion();
 				break;
 			case 2:
-				resultado = Integer.toString(k.getTipoCargo().getNoTipoCargo());
+				resultado = k.getTipoCargo().getNoTipoCargo();
 				break;
 			case 3:
 				resultado = valor2Txt(k.getMonto(), "#,##0.00");

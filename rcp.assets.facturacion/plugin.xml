@@ -66,7 +66,7 @@
       <view
             class="rcp.assets.views.NavigationView2"
             id="rcp.assets.views.NavigationView2"
-            name="Menú principal (v2)"
+            name="Menú principal"
             restorable="true">
       </view>
       <view
