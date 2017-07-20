@@ -106,7 +106,7 @@ public class TipoCargosEditor extends AbstractEditor {
 		
 		txtCodigo = new Text(composite, SWT.BORDER);
 		GridData gd_txtCodigo = new GridData(SWT.LEFT, SWT.CENTER, true, false, 1, 1);
-		gd_txtCodigo.widthHint = 45;
+		gd_txtCodigo.widthHint = 60;
 		txtCodigo.setLayoutData(gd_txtCodigo);
 		formToolkit.adapt(txtCodigo, true, true);
 		
@@ -392,6 +392,10 @@ public class TipoCargosEditor extends AbstractEditor {
 		if (pCodigo.equals("")) {
 			MessageDialog.openInformation(getSite().getShell(), "Validación de campos",
 					"Debe introducir un código para el tipo de cargo.");
+			return false;
+		} else if (pCodigo.length() > 10) {
+			MessageDialog.openInformation(getSite().getShell(), "Validación de campos",
+					"En código para el tipo de cargo no puede tener más de 10 caracteres.");
 			return false;
 		} else if (pNombre.equals("")) {
 			MessageDialog.openInformation(getSite().getShell(), "Validación de campos",
