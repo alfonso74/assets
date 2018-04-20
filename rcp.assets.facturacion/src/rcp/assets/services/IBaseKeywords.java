@@ -19,7 +19,7 @@ public interface IBaseKeywords {
 		TipoKeyword.NOTIFICACION.getDescripcion()
 		};
 	
-	public static final String[] COMPANIAS = {Compania.PMA.getCodigo(), Compania.BVI.getCodigo()};
+	public static final String[] COMPANIAS = Compania.getCodigos();
 	
 	public static final String[] CONDICIONAL = {"Si", "No"};
 	

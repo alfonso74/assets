@@ -6,7 +6,6 @@ import java.util.List;
 import org.hibernate.Query;
 
 import rcp.assets.model.Caso;
-import rcp.assets.model.Compania;
 import rcp.assets.model.DetalleCargo;
 
 
@@ -19,7 +18,7 @@ public class CasoDAO extends GenericDAOImpl<Caso, Long> {
 	public Float calcularImpuesto(Caso caso, Float porcImpuesto) {
 		// solo los tipo_cargos con impuesto
 		Float impuesto = new Float(0);
-		if (caso.getNoCia().equals(Compania.PMA.getCodigo())) {
+		if (caso.getCompania().pagaItbms()) {
 			getSession().beginTransaction();
 			String hql = "from DetalleCargo det " +
 					"inner join fetch det.cargo cargo " +
