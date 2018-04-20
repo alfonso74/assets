@@ -69,6 +69,10 @@ public class Caso implements IEditableDocument {
 		}
 	}
 	
+	public Compania getCompania() {
+		return Compania.from(this.getNoCia());
+	}
+	
 	
 	// *********************************** getters y setters ******************************
 	
